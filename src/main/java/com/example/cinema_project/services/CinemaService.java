@@ -2,6 +2,8 @@ package com.example.cinema_project.services;
 
 import com.example.cinema_project.models.Movie;
 import com.example.cinema_project.models.Screen;
+import com.example.cinema_project.repositories.MovieRepository;
+import com.example.cinema_project.repositories.ScreenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

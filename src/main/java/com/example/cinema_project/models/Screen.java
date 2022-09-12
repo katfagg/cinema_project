@@ -11,7 +11,7 @@ public class Screen {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long Id;
+    private long id;
 
     @Column(name = "capacity")
     private int capacity;
@@ -38,11 +38,11 @@ public class Screen {
     }
 
     public long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(long id) {
-        Id = id;
+        this.id = id;
     }
 
     public int getCapacity() {
