@@ -19,14 +19,7 @@ public class Screen {
 
 
 
-    @ManyToMany
-    @JoinTable(
-            name = "screenings",
-            joinColumns = {@JoinColumn(name = "screen_id", nullable = false)},
-            inverseJoinColumns = {@JoinColumn(name = "movie_id", nullable = false)}
-    )
-
-    @JsonIgnoreProperties({"screens"})
+    @Column
     private List<Movie> movies;
 
     private  List<Customer> customers;

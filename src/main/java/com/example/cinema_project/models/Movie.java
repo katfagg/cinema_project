@@ -18,13 +18,7 @@ public class Movie {
     private int releaseDate;
     @Column
     private String genre;
-    @ManyToMany
-    @JoinTable(
-            name = "screenings",
-            joinColumns = {@JoinColumn(name = "movie_id", nullable = false)},
-            inverseJoinColumns = {@JoinColumn(name = "screen_id", nullable = false)}
-    )
-    @JsonIgnoreProperties({"movies"})
+    @Column
     private List<Screen> screens;
 
     public Movie(String title, int length, int releaseDate, String genre) {
