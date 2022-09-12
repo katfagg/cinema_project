@@ -1,6 +1,7 @@
 package com.example.cinema_project.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "customers")
@@ -23,6 +24,7 @@ public class Customer {
 
     public Customer(String name) {
         this.name = name;
+        this.screenings = new ArrayList<>();
     }
 
     public Customer() {
@@ -44,4 +46,11 @@ public class Customer {
         this.id = id;
     }
 
+    public List<Screening> getScreenings() {
+        return screenings;
+    }
+
+    public void setScreenings(List<Screening> screenings) {
+        this.screenings = screenings;
+    }
 }
