@@ -17,8 +17,7 @@ import java.util.List;
 public class CinemaController {
 
     @Autowired
-    CinemaService cinemaService
-
+    CinemaService cinemaService;
 
     @GetMapping
     public ResponseEntity<List<Movie>> getAllMovies(){
