@@ -16,14 +16,9 @@ public class Screen {
 
     @Column(name = "capacity")
     private int capacity;
-
-
-
+    
     @Column
     private List<Movie> movies;
-
-    private  List<Customer> customers;
-
 
     public Screen(int capacity) {
         this.capacity = capacity;
