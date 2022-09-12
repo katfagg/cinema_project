@@ -18,7 +18,7 @@ public class Screening {
     private Screen screen;
     @ManyToMany
     @JoinTable(
-            name = "screenings",
+            name = "screenings_customers",
             joinColumns = {@JoinColumn(name = "screening_id", nullable = false)},
             inverseJoinColumns = {@JoinColumn(name = "customer_id", nullable = false)}
     )

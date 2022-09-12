@@ -1,6 +1,7 @@
 package com.example.cinema_project.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity(name = "customers")
 public class Customer {
@@ -11,6 +12,14 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @ManyToMany
+    @JoinTable(
+            name = "screenings_customers",
+            joinColumns = {@JoinColumn(name = "customer_id", nullable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "screening_id", nullable = false)}
+    )
+    private List<Screening> screenings;
 
     public Customer(String name) {
         this.name = name;
