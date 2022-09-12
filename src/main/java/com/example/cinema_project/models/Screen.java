@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Optional;
 
 @Entity(name = "screens")
 public class Screen {
@@ -27,6 +28,8 @@ public class Screen {
 
     @JsonIgnoreProperties({"screens"})
     private List<Movie> movies;
+
+    private  List<Customer> customers;
 
 
     public Screen(int capacity) {
@@ -60,4 +63,6 @@ public class Screen {
     public void setMovies(List<Movie> movies) {
         this.movies = movies;
     }
+
+
 }

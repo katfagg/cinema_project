@@ -38,7 +38,7 @@ public class CinemaController {
     }
 
     @PostMapping
-    public ResponseEntity<Movie> addScreenToCinema(@RequestBody Cinema cinema){
+    public ResponseEntity<Screen> addScreenToCinema(@RequestBody Cinema cinema){
         Screen savedScreen = cinemaService.addScreenToCinema(screen);
         return new ResponseEntity<>(savedScreen, HttpStatus.CREATED);
     }
