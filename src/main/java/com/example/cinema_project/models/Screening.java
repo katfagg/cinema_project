@@ -14,8 +14,11 @@ public class Screening {
     private Long id;
     @Column
     private Movie movie;
-    @Column
+    @ManyToOne
+    @JoinColumn(name = "screen_id")
+    @JsonIgnoreProperties({"screenings"})
     private Screen screen;
+
     @ManyToMany
     @JoinTable(
             name = "screenings_customers",
