@@ -12,7 +12,7 @@ public class CustomerService {
     @Autowired
     CustomerRepository customerRepository;
 
-    public List<Customer> getAllCustomer(){
+    public List<Customer> getAllCustomers(){
         return customerRepository.findAll();
     }
 
@@ -20,7 +20,7 @@ public class CustomerService {
         return customerRepository.findById(id);
     }
 
-    public Customer addCustomer(Customer customer){
+    public Customer addNewCustomer(Customer customer){
         customerRepository.save(customer);
         return customer;
     }
