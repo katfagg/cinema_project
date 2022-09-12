@@ -3,6 +3,7 @@ package com.example.cinema_project.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "movies")
@@ -18,14 +19,16 @@ public class Movie {
     private int releaseDate;
     @Column
     private String genre;
-    @Column
-    private List<Screen> screens;
+    @@OneToMany(mappedBy = "movie")
+    @JsonIgnoreProperties({"movie"})
+    private List<Screen> screenings;
 
     public Movie(String title, int length, int releaseDate, String genre) {
         this.title = title;
         this.length = length;
         this.releaseDate = releaseDate;
         this.genre = genre;
+        this.screenings = new ArrayList<>();
     }
 
     public Movie() {
@@ -69,5 +72,13 @@ public class Movie {
 
     public void setGenre(String genre) {
         this.genre = genre;
+    }
+
+    public List<Screen> getScreenings() {
+        return screenings;
+    }
+
+    public void setScreenings(List<Screen> screenings) {
+        this.screenings = screenings;
     }
 }

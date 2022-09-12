@@ -12,7 +12,9 @@ public class Screening {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column
+    @ManyToOne
+    @JoinColumn(name = "movie_id")
+    @JsonIgnoreProperties({"screenings"})
     private Movie movie;
     @ManyToOne
     @JoinColumn(name = "screen_id")
