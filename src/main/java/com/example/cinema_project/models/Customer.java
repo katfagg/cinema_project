@@ -1,18 +1,23 @@
 package com.example.cinema_project.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity(name = "customers")
 public class Customer {
 
+    @Column
     private String name;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long customerId;
+    private long id;
+
+    public Customer(String name) {
+        this.name = name;
+    }
+
+    public Customer() {
+    }
 
     public String getName() {
         return name;
@@ -23,11 +28,11 @@ public class Customer {
     }
 
     public long getCustomerId() {
-        return customerId;
+        return id;
     }
 
-    public void setCustomerId(long customerId) {
-        this.customerId = customerId;
+    public void setCustomerId(long id) {
+        this.id = id;
     }
 
 }
