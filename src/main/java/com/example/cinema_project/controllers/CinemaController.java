@@ -4,12 +4,14 @@ package com.example.cinema_project.controllers;
 import com.example.cinema_project.models.Movie;
 import com.example.cinema_project.models.Screen;
 import com.example.cinema_project.services.CinemaService;
+import com.example.cinema_project.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/movies and screens")
@@ -17,7 +19,8 @@ public class CinemaController {
 
     @Autowired
     CinemaService cinemaService;
-    private CinemaController customerService;
+    @Autowired
+    CustomerService customerService;
 
     @GetMapping
     public ResponseEntity<List<Movie>> getAllMovies(){
@@ -33,7 +36,7 @@ public class CinemaController {
 
     @PostMapping
     public ResponseEntity<Movie> addCustomerToMovie(@RequestBody Movie movie){
-        org.springframework.http.ResponseEntity<Movie> savedMovie = customerService.addCustomerToMovie(movie);
+        Movie savedMovie = customerService.addCustomerToMovie(movie);
         return new ResponseEntity<>(movie, HttpStatus.CREATED);
     }
 
