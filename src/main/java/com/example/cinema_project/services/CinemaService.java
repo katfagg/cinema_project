@@ -35,9 +35,13 @@ public class CinemaService {
         return cinema;
     }
 
-    public Screen addScreenToCinema(Screen screen){
-        screenRepository.save(screen);
-        return screen;
+    public Screen addScreenToCinema(Screen screen, long cinemaId){
+        Cinema cinema = cinemaRepository.findById(cinemaId). get();
+        List<Screen> screens = cinema.getScreens();
+        screens.add(screen);
+        cinema.setScreens(screens);
+        cinemaRepository.save(cinema);
+        return cinema;
     }
 
     public void cancelMovie(long id){
