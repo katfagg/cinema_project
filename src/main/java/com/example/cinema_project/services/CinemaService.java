@@ -34,10 +34,10 @@ public class CinemaService {
         movieRepository.deleteById(id);
     }
 
-    public Screen addNewScreen(Screen screen){
-        screenRepository.save(screen);
-        return screen;
-    }
+//    public Screen addNewScreen(Screen screen){
+//        screenRepository.save(screen);
+//        return screen;
+//    }
 
 //    public Screen addMovieToScreen(long screenId, long movieId){
 //        Screen screen = screenRepository.findById(screenId).get();

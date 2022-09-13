@@ -54,11 +54,11 @@ public class ScreenController {
         }
     }
 
-    @PostMapping
-    public ResponseEntity<Screen> addNewScreen(@RequestBody Screen screen){
-        Screen savedScreen = screenService.addNewScreen(screen);
-        return new ResponseEntity<>(savedScreen, HttpStatus.CREATED);
-    }
+//    @PostMapping
+//    public ResponseEntity<Screen> addNewScreen(@RequestBody Screen screen){
+//        Screen savedScreen = screenService.addNewScreen(screen);
+//        return new ResponseEntity<>(savedScreen, HttpStatus.CREATED);
+//    }
 
     @PatchMapping(value = "/{id}")
     public ResponseEntity<Screen> addScreeningToScreen(@PathVariable long screenId, @RequestParam long screeningId){
