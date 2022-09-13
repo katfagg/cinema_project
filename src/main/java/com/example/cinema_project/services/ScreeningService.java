@@ -21,6 +21,10 @@ public class ScreeningService {
     @Autowired
     ScreenService screenService;
 
+    public Optional<Screening> getScreeningById(Long screeningId){
+        return screeningRepository.findById(screeningId);
+    }
+
     public Screening addCustomerToScreening(Long customerId, Long screeningId){
         Screening screening = screeningRepository.findById(screeningId).get();
         Optional<Customer> customer = customerService.getCustomerById(customerId);
