@@ -1,5 +1,7 @@
 package com.example.cinema_project.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +22,7 @@ public class Customer {
             joinColumns = {@JoinColumn(name = "customer_id", nullable = false)},
             inverseJoinColumns = {@JoinColumn(name = "screening_id", nullable = false)}
     )
+    @JsonIgnoreProperties({"customers"})
     private List<Screening> screenings;
 
     public Customer(String name) {

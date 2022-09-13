@@ -2,10 +2,7 @@ package com.example.cinema_project.components;
 
 import com.example.cinema_project.CinemaProjectApplication;
 import com.example.cinema_project.models.*;
-import com.example.cinema_project.repositories.CustomerRepository;
-import com.example.cinema_project.repositories.MovieRepository;
-import com.example.cinema_project.repositories.ScreenRepository;
-import com.example.cinema_project.repositories.ScreeningRepository;
+import com.example.cinema_project.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -26,6 +23,9 @@ public class DataLoader implements ApplicationRunner{
 
     @Autowired
     ScreenRepository screenRepository;
+
+    @Autowired
+    CinemaRepository cinemaRepository;
 
     public void run(ApplicationArguments args) throws Exception {
 
@@ -68,7 +68,8 @@ public class DataLoader implements ApplicationRunner{
         Movie movie10 = new Movie("Inception", 140, 2010, "Sci-fi", cinema);
         Movie movie11 = new Movie("The Ugly Truth", 96, 2009, "Comedy", cinema);
         Movie movie12 = new Movie("Hacksaw Ridge", 139, 2016, "Historical Drama", cinema);
-
+        cinemaRepository.save(cinema);
+        movieRepository.save(movie);
         movieRepository.save(movie1);
         movieRepository.save(movie2);
         movieRepository.save(movie3);

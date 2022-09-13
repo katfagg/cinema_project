@@ -16,7 +16,6 @@ public class Cinema {
         private String branch;
         @OneToMany(mappedBy = "cinema")
         @JsonIgnoreProperties({"cinema"})
-        
         private List<Movie> movies;
         @OneToMany(mappedBy = "cinema")
         @JsonIgnoreProperties({"cinema"})

@@ -16,15 +16,28 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/cinemas")
+@RequestMapping(value = "/cinemas")
 public class CinemaController {
     
 
     @Autowired
     CinemaService cinemaService;
 
-    @Autowired
-    ScreenService screenService;
+    @GetMapping
+    public ResponseEntity<List<Cinema>> getAllCinemas() {
+        List<Cinema> cinemas = cinemaService.getAllCinemas();
+        return new ResponseEntity<>(cinemas, HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Cinema> getCinemaById(@PathVariable long id){
+        Optional<Cinema> cinema = cinemaService.getCinemaById(id);
+        if(cinema.isPresent()){
+            return new ResponseEntity<>(cinema.get(), HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+    }
 
     @GetMapping("/movies")
     public ResponseEntity<List<Movie>> getAllMovies() {
@@ -47,13 +60,6 @@ public class CinemaController {
         cinemaService.cancelMovie(id);
         return new ResponseEntity(null, HttpStatus.NO_CONTENT);
     }
-    
-
-    @PatchMapping
-    public ResponseEntity<Screen> addScreen(@RequestBody Screen newScreen) {
-        Screen screen = screenService.addNewScreen(newScreen);
-        return new ResponseEntity<>(screen, HttpStatus.OK);
-    }
 
     @PostMapping(value = "/{id}/movies")
     public ResponseEntity<Cinema> addMovieToCinema(@RequestBody Movie movie, @PathVariable long id){
@@ -71,22 +77,6 @@ public class CinemaController {
     public ResponseEntity<Cinema> createCinema(@RequestBody Cinema cinema) {
         Cinema savedCinema = cinemaService.addNewCinema(cinema);
         return new ResponseEntity<>(savedCinema, HttpStatus.CREATED);
-    }
-
-    @GetMapping
-    public ResponseEntity<List<Cinema>> getAllCinemas() {
-        List<Cinema> cinemas = cinemaService.getAllCinemas();
-        return new ResponseEntity<>(cinemas, HttpStatus.OK);
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Cinema> getCinemaById(@PathVariable long id){
-        Optional<Cinema> cinema = cinemaService.getCinemaById(id);
-        if(cinema.isPresent()){
-            return new ResponseEntity<>(cinema.get(), HttpStatus.OK);
-        }else{
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        }
     }
 
 
