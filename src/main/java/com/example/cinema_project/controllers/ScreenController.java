@@ -6,10 +6,7 @@ import com.example.cinema_project.services.ScreenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,7 +14,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/screens")
 public class ScreenController {
-    
+
     @Autowired
     ScreenService screenService;
 
@@ -34,5 +31,11 @@ public class ScreenController {
         }else{
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
+    }
+
+    @PostMapping
+    public ResponseEntity<Screen> addNewScreen(@RequestBody Screen screen){
+        Screen savedScreen = screenService.addNewScreen(screen);
+        return new ResponseEntity<>(savedScreen, HttpStatus.CREATED);
     }
 }

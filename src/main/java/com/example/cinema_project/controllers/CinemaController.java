@@ -17,6 +17,7 @@ public class CinemaController {
 
     @Autowired
     CinemaService cinemaService;
+    private CinemaController customerService;
 
     @GetMapping
     public ResponseEntity<List<Movie>> getAllMovies(){
@@ -32,13 +33,13 @@ public class CinemaController {
 
     @PostMapping
     public ResponseEntity<Movie> addCustomerToMovie(@RequestBody Movie movie){
-        Movie savedMovie = cinemaService.addCustomerToMovie(customer);
-        return new ResponseEntity<>(savedCustomer, HttpStatus.CREATED);
+        org.springframework.http.ResponseEntity<Movie> savedMovie = customerService.addCustomerToMovie(movie);
+        return new ResponseEntity<>(movie, HttpStatus.CREATED);
     }
 
     @PostMapping(value="/cinema")
     public ResponseEntity<Screen> createScreen(@RequestBody Screen newScreen){
-        Screen screen = cinemaService.addNewScreen(newScreen);
+        List<Screen> screen = cinemaService.addNewScreen(newScreen);
         return new ResponseEntity<>(newScreen, HttpStatus.CREATED);
 
 
