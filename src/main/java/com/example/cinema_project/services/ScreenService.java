@@ -18,13 +18,12 @@ public class ScreenService {
 
     @Autowired
     ScreenRepository screenRepository;
-
     @Autowired
-    ScreeningService screeningService;
+    ScreeningRepository screeningRepository;
 
     public Screen addScreeningToScreen(long screenId, long screeningId){
         Optional<Screen> screen = screenRepository.findById(screenId);
-        Optional<Screening> screening = screeningService.getScreeningById(screeningId);
+        Optional<Screening> screening = screeningRepository.findById(screeningId);
         if(!screen.isPresent()) return null;
         if(screening.isPresent()) {
             List<Screening> screenings = screen.get().getScreenings();
@@ -38,7 +37,7 @@ public class ScreenService {
 
     public void removeScreeningFromScreen(long screenId, long screeningId){
         Optional<Screen> screen = screenRepository.findById(screenId);
-        Optional<Screening> screening = screeningService.getScreeningById(screeningId);
+        Optional<Screening> screening = screeningRepository.findById(screeningId);
         if(!screen.isPresent()) return;
         if(screening.isPresent()) {
             List<Screening> screenings = screen.get().getScreenings();

@@ -16,8 +16,15 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/cinema")
+@RequestMapping("/cinemas")
 public class CinemaController {
+
+//    1. cinemaRepo (done)
+//    2. cinemaService => addMovie => add movie to cinema movie List (tariq)
+//    3. cinemaService => addScreenToCinema => add to list (kat)
+//    4. cinemaController => PostMapping(/{id}/screens) (kat)
+//    5. cinemaService => getAllCinemas/id/add
+//    6. cinemaController => getAllCinemas...
 
     @Autowired
     CinemaService cinemaService;
