@@ -88,20 +88,6 @@ public class DataLoader implements ApplicationRunner{
         movieRepository.save(movie11);
         movieRepository.save(movie12);
 
-        cinemaService.addNewMovieToCinema(movie,1);
-//        cinemaService.addNewMovieToCinema(movie1,1);
-//        cinemaService.addNewMovieToCinema(movie2,1);
-//        cinemaService.addNewMovieToCinema(movie3,1);
-//        cinemaService.addNewMovieToCinema(movie4,1);
-//        cinemaService.addNewMovieToCinema(movie5,1);
-//        cinemaService.addNewMovieToCinema(movie6,1);
-//        cinemaService.addNewMovieToCinema(movie7,1);
-//        cinemaService.addNewMovieToCinema(movie8,1);
-//        cinemaService.addNewMovieToCinema(movie9,1);
-//        cinemaService.addNewMovieToCinema(movie10,1);
-//        cinemaService.addNewMovieToCinema(movie11,1);
-//        cinemaService.addNewMovieToCinema(movie12,1);
-
         Screen screen1 = new Screen(4, cinema);
         Screen screen2 = new Screen(5, cinema);
         Screen screen3 = new Screen(6, cinema);
