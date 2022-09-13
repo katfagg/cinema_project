@@ -44,6 +44,16 @@ public class ScreenController {
         return new ResponseEntity<>(screenings, HttpStatus.OK);
     }
 
+    @GetMapping("/screenings/{id}")
+    public ResponseEntity<Screening> getScreeningById(@PathVariable Long id){
+        Optional<Screening> screening = screeningService.getScreeningById(id);
+        if(screening.isPresent()){
+            return new ResponseEntity<>(screening.get(), HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+    }
+
     @PostMapping
     public ResponseEntity<Screen> addNewScreen(@RequestBody Screen screen){
         Screen savedScreen = screenService.addNewScreen(screen);
