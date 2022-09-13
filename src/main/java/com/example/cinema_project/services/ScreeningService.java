@@ -88,16 +88,6 @@ public class ScreeningService {
             }
             return screening.get();
         }else{
-            Optional<Screen> screen = screenService.getScreenById(screenId);
-            if(screen.isPresent()){
-                if(movie.isPresent()){
-                    Screening newScreening = new Screening(null, screen.get());
-                    screenService.addScreeningToScreen(screenId, screeningId);
-                    return newScreening;
-                }else{
-                    return null;
-                }
-            }
             return null;
         }
     }
