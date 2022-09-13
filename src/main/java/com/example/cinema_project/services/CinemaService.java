@@ -31,10 +31,6 @@ public class CinemaService {
     }
 
     public void cancelMovie(long id){
-        List<Screen> screens = screenService.getAllScreens();
-        for(Screen screen : screens){
-            screenService.deleteAllMoviesFromScreen(id,screen.getId());
-        }
         movieRepository.deleteById(id);
     }
 
