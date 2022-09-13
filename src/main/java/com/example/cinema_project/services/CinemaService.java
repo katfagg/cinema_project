@@ -1,8 +1,10 @@
 package com.example.cinema_project.services;
 
+import com.example.cinema_project.models.Cinema;
 import com.example.cinema_project.models.Movie;
 import com.example.cinema_project.models.Screen;
 import com.example.cinema_project.models.Screening;
+import com.example.cinema_project.repositories.CinemaRepository;
 import com.example.cinema_project.repositories.MovieRepository;
 import com.example.cinema_project.repositories.ScreenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,9 @@ import java.util.Optional;
 public class CinemaService {
     @Autowired
     MovieRepository movieRepository;
+
+    @Autowired
+    CinemaRepository cinemaRepository;
 
     public List<Movie> getAllMovies(){
         return movieRepository.findAll();
@@ -58,5 +63,16 @@ public class CinemaService {
         return movieRepository.findById(id);
     } 
 
+    public List<Cinema> getAllCinemas(){
+        return cinemaRepository.findAll();
+    }
 
+    public Optional<Cinema> getCinemaById(Long id){
+        return cinemaRepository.findById(id);
+    }
+
+    public Cinema addNewCinema(Cinema cinema){
+        cinemaRepository.save(cinema);
+        return cinema;
+    }
 }
