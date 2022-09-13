@@ -29,6 +29,11 @@ public class ScreeningService {
         return screeningRepository.findById(screeningId);
     }
 
+    public Screening addNewScreening(Screening screening){
+        screeningRepository.save(screening);
+        return screening;
+    }
+
     public Screening addCustomerToScreening(Long customerId, Long screeningId){
         Screening screening = screeningRepository.findById(screeningId).get();
         Optional<Customer> customer = customerService.getCustomerById(customerId);

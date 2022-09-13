@@ -59,4 +59,7 @@ public class ScreenController {
         Screen savedScreen = screenService.addNewScreen(screen);
         return new ResponseEntity<>(savedScreen, HttpStatus.CREATED);
     }
+
+    @PatchMapping
+    public ResponseEntity<Screen> addNewScreening(){}
 }
