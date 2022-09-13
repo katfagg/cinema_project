@@ -25,6 +25,11 @@ public class CinemaService {
         return movie;
     }
 
+    public Screen addScreenToCinema(Screen screen){
+        screenRepository.save(screen);
+        return screen;
+    }
+
     public void cancelMovie(long id){
         movieRepository.deleteById(id);
     }

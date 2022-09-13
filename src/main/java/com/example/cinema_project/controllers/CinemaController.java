@@ -105,6 +105,12 @@ public class CinemaController {
         return new ResponseEntity<>(cinema, HttpStatus.CREATED);
     }
 
+    @PostMapping("/{id}/screens")
+    public ResponseEntity<Screen> addScreenToCinema(@RequestBody Screen newScreen){
+        Screen screen = cinemaService.addScreenToCinema(newScreen);
+        return new ResponseEntity<>(screen, HttpStatus.OK);
+    }
+
 //    @DeleteMapping
 //    public ResponseEntity deleteScreen(long id){
 //        screenService.removeScreen(id);
