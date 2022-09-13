@@ -21,12 +21,20 @@ public class ScreeningService {
     @Autowired
     ScreenService screenService;
 
+    @Autowired
+    CinemaService cinemaService;
+
     public List<Screening> getAllScreenings(){
         return screeningRepository.findAll();
     }
 
     public Optional<Screening> getScreeningById(Long screeningId){
         return screeningRepository.findById(screeningId);
+    }
+
+    public Screening addNewScreening(Screening screening){
+        screeningRepository.save(screening);
+        return screening;
     }
 
     public Screening addCustomerToScreening(Long customerId, Long screeningId){
@@ -46,17 +54,51 @@ public class ScreeningService {
 //    screening 1 (9 am) plays 1 movie
     public Screening addMovieToScreening(long movieId, long screeningId, long screenId){
         Optional<Screening> screening = screeningRepository.findById(screeningId);
-        Optional<Movie> movie = screenService.getMovieById(movieId);
+        Optional<Movie> movie = cinemaService.getMovieById(movieId);
         if(screening.isPresent()){
             if(movie.isPresent()){
                 screening.get().setMovie(movie.get());
                 screeningRepository.save(screening.get());
+                screenService.addScreeningToScreen(screenId, screeningId);
             }
             return screening.get();
         }else{
-            Screen screen = screenService.getScreenById(screenId);
-            Screening newScreening = new Screening(movie.get(), screen);
-            return newScreening;
+            Optional<Screen> screen = screenService.getScreenById(screenId);
+            if(screen.isPresent()){
+                if(movie.isPresent()){
+                    Screening newScreening = new Screening(movie.get(), screen.get());
+                    screenService.addScreeningToScreen(screenId, screeningId);
+                    return newScreening;
+                }else{
+                    return null;
+                }
+            }
+            return null;
+        }
+    }
+
+    public Screening removeMovieFromScreening(long movieId, long screeningId, long screenId){
+        Optional<Screening> screening = screeningRepository.findById(screeningId);
+        Optional<Movie> movie = cinemaService.getMovieById(movieId);
+        if(screening.isPresent()){
+            if(movie.isPresent()){
+                screening.get().setMovie(null);
+                screeningRepository.save(screening.get());
+                screenService.addScreeningToScreen(screenId, screeningId);
+            }
+            return screening.get();
+        }else{
+            Optional<Screen> screen = screenService.getScreenById(screenId);
+            if(screen.isPresent()){
+                if(movie.isPresent()){
+                    Screening newScreening = new Screening(null, screen.get());
+                    screenService.addScreeningToScreen(screenId, screeningId);
+                    return newScreening;
+                }else{
+                    return null;
+                }
+            }
+            return null;
         }
     }
 }

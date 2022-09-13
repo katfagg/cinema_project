@@ -12,6 +12,7 @@ import java.util.List;
 @Service
 public class CinemaService {
     @Autowired
+    static
     MovieRepository movieRepository;
     @Autowired
     ScreenRepository screenRepository;
