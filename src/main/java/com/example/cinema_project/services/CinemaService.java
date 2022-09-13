@@ -2,12 +2,14 @@ package com.example.cinema_project.services;
 
 import com.example.cinema_project.models.Movie;
 import com.example.cinema_project.models.Screen;
+import com.example.cinema_project.models.Screening;
 import com.example.cinema_project.repositories.MovieRepository;
 import com.example.cinema_project.repositories.ScreenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CinemaService {
@@ -54,6 +56,10 @@ public class CinemaService {
     public List<Screen> getAllScreens(){
         return screenRepository.findAll();
     }
+
+    public Optional<Movie> getMovieById(Long id){
+        return movieRepository.findById(id);
+    } 
 
 
 }

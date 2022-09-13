@@ -1,10 +1,14 @@
 package com.example.cinema_project.controllers;
 
 
+import com.example.cinema_project.models.Customer;
 import com.example.cinema_project.models.Movie;
 import com.example.cinema_project.models.Screen;
+import com.example.cinema_project.models.Screening;
 import com.example.cinema_project.services.CinemaService;
 import com.example.cinema_project.services.CustomerService;
+import com.example.cinema_project.services.ScreeningService;
+import org.apache.catalina.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +26,9 @@ public class CinemaController {
     @Autowired
     CustomerService customerService;
 
+    @Autowired
+    ScreeningService screeningService;
+
     @GetMapping
     public ResponseEntity<List<Movie>> getAllMovies() {
         List<Movie> movies = cinemaService.getAllMovies();
@@ -30,19 +37,22 @@ public class CinemaController {
 
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Long> cancelMovie(@PathVariable long id) {
-        CinemaService.cancelMovie(id);
+        cinemaService.cancelMovie(id);
         return new ResponseEntity(null, HttpStatus.NO_CONTENT);
     }
 
-    @PostMapping
-    public ResponseEntity<Movie> addCustomerToMovie(@RequestBody Movie movie) {
-        Movie savedMovie = customerService.addCustomerToMovie(movie);
-        return new ResponseEntity<>(movie, HttpStatus.CREATED);
+    @PatchMapping("/screenings/{id}")
+    public ResponseEntity<Screening> addCustomerToScreening(@PathVariable  long id, @RequestBody Screening screening) {
+        Optional<Customer> customerId = customerService.getCustomerById(id);
+        Screening updatedScreening = screeningService.addCustomerToScreening(customerId, screening.getId());
+        return new ResponseEntity<>(updatedScreening, HttpStatus.OK);
+//        screening = ScreeningService.addCustomerToScreening(screening);
+//        return new ResponseEntity<>(movie, HttpStatus.CREATED);
     }
 
     @PostMapping(value = "/cinema")
     public ResponseEntity<Screen> createScreen(@RequestBody Screen newScreen) {
-        List<Screen> screen = cinemaService.addNewScreen(newScreen);
+        Screen screen = cinemaService.addNewScreen(newScreen);
         return new ResponseEntity<>(newScreen, HttpStatus.CREATED);
 
 

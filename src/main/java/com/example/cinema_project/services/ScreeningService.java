@@ -37,7 +37,7 @@ public class ScreeningService {
         return screening;
     }
 
-    public Screening addCustomerToScreening(Long customerId, Long screeningId){
+    public Screening addCustomerToScreening(long customerId, Long screeningId){
         Screening screening = screeningRepository.findById(screeningId).get();
         Optional<Customer> customer = customerService.getCustomerById(customerId);
         if(customer.isPresent()){
