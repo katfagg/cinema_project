@@ -18,6 +18,8 @@ public class CinemaService {
     MovieRepository movieRepository;
     @Autowired
     ScreenRepository screenRepository;
+    @Autowired
+    ScreenService screenService;
 
     public List<Movie> getAllMovies(){
         return movieRepository.findAll();
@@ -29,6 +31,10 @@ public class CinemaService {
     }
 
     public void cancelMovie(long id){
+        List<Screen> screens = screenService.getAllScreens();
+        for(Screen screen : screens){
+            screenService.deleteAllMoviesFromScreen(id,screen.getId());
+        }
         movieRepository.deleteById(id);
     }
 
