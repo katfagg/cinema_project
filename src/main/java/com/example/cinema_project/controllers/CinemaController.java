@@ -23,27 +23,28 @@ public class CinemaController {
     CustomerService customerService;
 
     @GetMapping
-    public ResponseEntity<List<Movie>> getAllMovies(){
+    public ResponseEntity<List<Movie>> getAllMovies() {
         List<Movie> movies = cinemaService.getAllMovies();
         return new ResponseEntity<>(movies, HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Long> cancelMovie(@PathVariable long id){
+    public ResponseEntity<Long> cancelMovie(@PathVariable long id) {
         CinemaService.cancelMovie(id);
         return new ResponseEntity(null, HttpStatus.NO_CONTENT);
     }
 
     @PostMapping
-    public ResponseEntity<Movie> addCustomerToMovie(@RequestBody Movie movie){
+    public ResponseEntity<Movie> addCustomerToMovie(@RequestBody Movie movie) {
         Movie savedMovie = customerService.addCustomerToMovie(movie);
         return new ResponseEntity<>(movie, HttpStatus.CREATED);
     }
 
-    @PostMapping(value="/cinema")
-    public ResponseEntity<Screen> createScreen(@RequestBody Screen newScreen){
+    @PostMapping(value = "/cinema")
+    public ResponseEntity<Screen> createScreen(@RequestBody Screen newScreen) {
         List<Screen> screen = cinemaService.addNewScreen(newScreen);
         return new ResponseEntity<>(newScreen, HttpStatus.CREATED);
 
 
-
+    }
+}
