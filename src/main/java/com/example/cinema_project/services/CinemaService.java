@@ -44,6 +44,8 @@ public class CinemaService {
         return screen;
     }
 
+
+
     public List<Screen> removeScreen(long id){
         screenRepository.deleteById(id);
     }
