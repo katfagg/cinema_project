@@ -3,6 +3,7 @@ package com.example.cinema_project.controllers;
 import com.example.cinema_project.models.Screen;
 import com.example.cinema_project.models.Screening;
 import com.example.cinema_project.services.ScreenService;
+import com.example.cinema_project.services.ScreeningService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,9 +19,13 @@ public class ScreenController {
     @Autowired
     ScreenService screenService;
 
+    @Autowired
+    ScreeningService screeningService;
+
     @GetMapping
     public ResponseEntity<List<Screen>> getAllScreens(){
         List<Screen> screens = screenService.getAllScreens();
+        return new ResponseEntity<>(screens, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
@@ -31,6 +36,12 @@ public class ScreenController {
         }else{
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
+    }
+
+    @GetMapping("/screenings")
+    public ResponseEntity<List<Screening>> getAllScreenings(){
+        List<Screening> screenings = screeningService.getAllScreenings();
+        return new ResponseEntity<>(screenings, HttpStatus.OK);
     }
 
     @PostMapping

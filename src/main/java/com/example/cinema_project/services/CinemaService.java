@@ -12,6 +12,7 @@ import java.util.List;
 @Service
 public class CinemaService {
     @Autowired
+    static
     MovieRepository movieRepository;
     @Autowired
     ScreenRepository screenRepository;
@@ -25,7 +26,7 @@ public class CinemaService {
         return movie;
     }
 
-    public static List<Movie> cancelMovie(long id){
+    public List<Movie> cancelMovie(long id){
         movieRepository.deleteById(id);
     }
 
