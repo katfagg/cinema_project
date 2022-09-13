@@ -18,8 +18,8 @@ public class Screen {
     @Column(name = "capacity")
     private int capacity;
 
-    @Column
-    private List<Movie> movies;
+//    @Column
+//    private List<Movie> movies;
 
     @OneToMany(mappedBy = "screen")
     @JsonIgnoreProperties({"screen"})
@@ -50,13 +50,13 @@ public class Screen {
         this.capacity = capacity;
     }
 
-    public List<Movie> getMovies() {
-        return movies;
-    }
-
-    public void setMovies(List<Movie> movies) {
-        this.movies = movies;
-    }
+//    public List<Movie> getMovies() {
+//        return movies;
+//    }
+//
+//    public void setMovies(List<Movie> movies) {
+//        this.movies = movies;
+//    }
 
     public List<Screening> getScreenings() {
         return screenings;

@@ -14,12 +14,7 @@ import java.util.Optional;
 @Service
 public class CinemaService {
     @Autowired
-    static
     MovieRepository movieRepository;
-    @Autowired
-    ScreenRepository screenRepository;
-    @Autowired
-    ScreenService screenService;
 
     public List<Movie> getAllMovies(){
         return movieRepository.findAll();

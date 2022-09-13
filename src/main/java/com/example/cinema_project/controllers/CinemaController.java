@@ -98,4 +98,10 @@ public class CinemaController {
         return new ResponseEntity<>(cinema, HttpStatus.CREATED);
     }
 
+//    @DeleteMapping
+//    public ResponseEntity deleteScreen(long id){
+//        screenService.removeScreen(id);
+//        return new ResponseEntity<>(null. HttpStatus.NO_CONTENT);
+//    }
+
 }
