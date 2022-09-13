@@ -1,9 +1,8 @@
 package com.example.cinema_project.services;
 
 
-import com.example.cinema_project.models.Customer;
+import com.example.cinema_project.models.Movie;
 import com.example.cinema_project.models.Screen;
-import com.example.cinema_project.repositories.CustomerRepository;
 import com.example.cinema_project.repositories.MovieRepository;
 import com.example.cinema_project.repositories.ScreenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,19 +21,16 @@ public class ScreenService {
     ScreenRepository screenRepository;
 
     @Autowired
-    CustomerRepository customerRepository;
-
-    @Autowired
-    CustomerService customerService;
+    CinemaService cinemaService;
 
 
-    public Screen addCustomerToScreen( long customerId, long screenId){
+    public Screen addMovieToScreen(long movieId, long screenId){
         Screen screen = screenRepository.findById(screenId).get();
-        Optional<Customer> customer = customerService.getCustomerById(customerId);
-        List<Customer> customers = screen.getCustomers();
-        customers.add(customer);
-        screen.setCustomers(customer);
-        screenRepository.save(screen);
+        Optional<Movie> movie = cinemaService.getMovieById(movieId);
+        List<Movie> movies = screen.getMovies();
+        movies.add(movie);
+        screen.setMovies(movie);
+        screenRepository.save(movie);
         return screen;
     }
 

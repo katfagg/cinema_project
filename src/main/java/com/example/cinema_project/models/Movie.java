@@ -19,7 +19,7 @@ public class Movie {
     private int releaseDate;
     @Column
     private String genre;
-    @@OneToMany(mappedBy = "movie")
+    @OneToMany(mappedBy = "movie")
     @JsonIgnoreProperties({"movie"})
     private List<Screen> screenings;
 
