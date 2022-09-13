@@ -19,8 +19,9 @@ public class CinemaService {
     @Autowired
     CinemaRepository cinemaRepository;
 
-    public List<Movie> getAllMovies(){
-        return movieRepository.findAll();
+    public List<Movie> getAllMovies(long cinemaId){
+        Cinema cinema= cinemaRepository.findById(cinemaId).get();
+        return cinema.getMovies();
     }
 
     public Cinema addNewMovieToCinema(Movie movie, long cinemaId){
@@ -46,8 +47,15 @@ public class CinemaService {
         movieRepository.deleteById(id);
     }
     
-    public Optional<Movie> getMovieById(Long id){
-        return movieRepository.findById(id);
+    public Movie getMovieById(long id, long cinemaId){
+        Cinema cinema = cinemaRepository.findById(cinemaId).get();
+        List<Movie> movies = cinema.getMovies();
+        for(Movie movie : movies){
+            if(movie.getId() == id){
+                return movie;
+            }
+        }
+        return null;
     } 
 
     public List<Cinema> getAllCinemas(){

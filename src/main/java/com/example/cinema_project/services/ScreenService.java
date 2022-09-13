@@ -59,11 +59,13 @@ public class ScreenService {
         return screenRepository.findById(id);
     }
 
+//    todo: whether we need it here for screenController or addScreenToCinema in cinemaService would be fine?
     public Screen addNewScreen(Screen screen){
         screenRepository.save(screen);
         return screen;
     }
 
+//    todo: remove screen from cinema: similar logic to addMovieToCinema? probably need to be in cinemaService?
     public void removeScreen(long id){
         screenRepository.deleteById(id);
     }

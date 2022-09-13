@@ -3,6 +3,7 @@ package com.example.cinema_project.components;
 import com.example.cinema_project.CinemaProjectApplication;
 import com.example.cinema_project.models.*;
 import com.example.cinema_project.repositories.*;
+import com.example.cinema_project.services.CinemaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -26,6 +27,9 @@ public class DataLoader implements ApplicationRunner{
 
     @Autowired
     CinemaRepository cinemaRepository;
+
+    @Autowired
+    CinemaService cinemaService;
 
     public void run(ApplicationArguments args) throws Exception {
 
@@ -69,6 +73,7 @@ public class DataLoader implements ApplicationRunner{
         Movie movie11 = new Movie("The Ugly Truth", 96, 2009, "Comedy", cinema);
         Movie movie12 = new Movie("Hacksaw Ridge", 139, 2016, "Historical Drama", cinema);
         cinemaRepository.save(cinema);
+
         movieRepository.save(movie);
         movieRepository.save(movie1);
         movieRepository.save(movie2);
@@ -83,7 +88,19 @@ public class DataLoader implements ApplicationRunner{
         movieRepository.save(movie11);
         movieRepository.save(movie12);
 
-        
+        cinemaService.addNewMovieToCinema(movie,1);
+//        cinemaService.addNewMovieToCinema(movie1,1);
+//        cinemaService.addNewMovieToCinema(movie2,1);
+//        cinemaService.addNewMovieToCinema(movie3,1);
+//        cinemaService.addNewMovieToCinema(movie4,1);
+//        cinemaService.addNewMovieToCinema(movie5,1);
+//        cinemaService.addNewMovieToCinema(movie6,1);
+//        cinemaService.addNewMovieToCinema(movie7,1);
+//        cinemaService.addNewMovieToCinema(movie8,1);
+//        cinemaService.addNewMovieToCinema(movie9,1);
+//        cinemaService.addNewMovieToCinema(movie10,1);
+//        cinemaService.addNewMovieToCinema(movie11,1);
+//        cinemaService.addNewMovieToCinema(movie12,1);
 
         Screen screen1 = new Screen(4, cinema);
         Screen screen2 = new Screen(5, cinema);

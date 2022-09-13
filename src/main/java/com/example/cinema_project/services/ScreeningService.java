@@ -30,8 +30,16 @@ public class ScreeningService {
         return screeningRepository.findAll();
     }
 
-    public Optional<Screening> getScreeningById(Long screeningId){
-        return screeningRepository.findById(screeningId);
+    public Screening getScreeningById(Long screeningId, Long screenId){
+        Optional<Screen> screen = screenService.getScreenById(screenId);
+        if(!screen.isPresent()) return null;
+        List<Screening> screenings = screen.get().getScreenings();
+        for(Screening screening : screenings){
+            if(screening.getId() == screeningId){
+                return screening;
+            }
+        }
+        return null;
     }
 
     public Screening addNewScreening(Screening screening){
@@ -52,12 +60,12 @@ public class ScreeningService {
     }
 
 
-    public Screening addMovieToScreening(long movieId, long screeningId, long screenId){
+    public Screening addMovieToScreening(long movieId, long screeningId, long screenId, long cinemaId){
         Optional<Screening> screening = screeningRepository.findById(screeningId);
-        Optional<Movie> movie = cinemaService.getMovieById(movieId);
+        Movie movie = cinemaService.getMovieById(movieId, cinemaId);
         if(screening.isPresent()){
-            if(movie.isPresent()){
-                screening.get().setMovie(movie.get());
+            if(movie != null){
+                screening.get().setMovie(movie);
                 screeningRepository.save(screening.get());
                 screenService.addScreeningToScreen(screenId, screeningId);
             }
@@ -65,8 +73,8 @@ public class ScreeningService {
         }else{
             Optional<Screen> screen = screenService.getScreenById(screenId);
             if(screen.isPresent()){
-                if(movie.isPresent()){
-                    Screening newScreening = new Screening(movie.get(), screen.get());
+                if(movie != null){
+                    Screening newScreening = new Screening(movie, screen.get());
                     screenService.addScreeningToScreen(screenId, screeningId);
                     return newScreening;
                 }else{
@@ -77,11 +85,11 @@ public class ScreeningService {
         }
     }
 
-    public Screening removeMovieFromScreening(long movieId, long screeningId, long screenId){
+    public Screening removeMovieFromScreening(long movieId, long screeningId, long screenId, long cinemaId){
         Optional<Screening> screening = screeningRepository.findById(screeningId);
-        Optional<Movie> movie = cinemaService.getMovieById(movieId);
+        Movie movie = cinemaService.getMovieById(movieId, cinemaId);
         if(screening.isPresent()){
-            if(movie.isPresent()){
+            if(movie != null){
                 screening.get().setMovie(null);
                 screeningRepository.save(screening.get());
                 screenService.addScreeningToScreen(screenId, screeningId);
