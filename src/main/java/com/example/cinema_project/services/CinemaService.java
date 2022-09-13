@@ -30,9 +30,9 @@ public class CinemaService {
         movieRepository.deleteById(id);
     }
 
-    public List<Screen> addNewScreen(Screen newScreen){
-        screenRepository.save(newScreen);
-        return newScreen;
+    public List<Screen> addNewScreen(Screen Screen){
+        screenRepository.save(Screen);
+        return Screen;
     }
 
     public Screen addMovieToScreen(long screenId, long movieId){
