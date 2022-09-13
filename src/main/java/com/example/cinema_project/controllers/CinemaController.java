@@ -28,21 +28,17 @@ public class CinemaController {
 
     @Autowired
     CinemaService cinemaService;
-    @Autowired
-    CustomerService customerService;
 
     @Autowired
     ScreenService screenService;
-    @Autowired
-    ScreeningService screeningService;
 
-    @GetMapping
+    @GetMapping("/movies")
     public ResponseEntity<List<Movie>> getAllMovies() {
         List<Movie> movies = cinemaService.getAllMovies();
         return new ResponseEntity<>(movies, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/movies/{id}")
     public ResponseEntity<Movie> getMovieById(@PathVariable long id){
         Optional<Movie> movie = cinemaService.getMovieById(id);
         if(movie.isPresent()){
@@ -100,9 +96,31 @@ public class CinemaController {
     }
 
     @PostMapping
-    public ResponseEntity<Cinema> createCinema(@RequestBody String branch) {
-        Cinema cinema = new Cinema(branch);
-        return new ResponseEntity<>(cinema, HttpStatus.CREATED);
+    public ResponseEntity<Cinema> createCinema(@RequestBody Cinema cinema) {
+        Cinema savedCinema = cinemaService.addNewCinema(cinema);
+        return new ResponseEntity<>(savedCinema, HttpStatus.CREATED);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Cinema>> getAllCinemas() {
+        List<Cinema> cinemas = cinemaService.getAllCinemas();
+        return new ResponseEntity<>(cinemas, HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Cinema> getCinemaById(@PathVariable long id){
+        Optional<Cinema> cinema = cinemaService.getCinemaById(id);
+        if(cinema.isPresent()){
+            return new ResponseEntity<>(cinema.get(), HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PostMapping("/{id}/screens")
+    public ResponseEntity<Screen> addScreenToCinema(@RequestBody Screen newScreen){
+        Screen screen = cinemaService.addScreenToCinema(newScreen);
+        return new ResponseEntity<>(screen, HttpStatus.OK);
     }
 
 //    @DeleteMapping

@@ -35,6 +35,11 @@ public class CinemaService {
         return cinema;
     }
 
+    public Screen addScreenToCinema(Screen screen){
+        screenRepository.save(screen);
+        return screen;
+    }
+
     public void cancelMovie(long id){
         movieRepository.deleteById(id);
     }
@@ -68,5 +73,16 @@ public class CinemaService {
         return movieRepository.findById(id);
     } 
 
+    public List<Cinema> getAllCinemas(){
+        return cinemaRepository.findAll();
+    }
 
+    public Optional<Cinema> getCinemaById(Long id){
+        return cinemaRepository.findById(id);
+    }
+
+    public Cinema addNewCinema(Cinema cinema){
+        cinemaRepository.save(cinema);
+        return cinema;
+    }
 }
