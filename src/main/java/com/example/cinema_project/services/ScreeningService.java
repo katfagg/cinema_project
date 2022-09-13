@@ -21,6 +21,10 @@ public class ScreeningService {
     @Autowired
     ScreenService screenService;
 
+    public List<Screening> getAllScreenings(){
+        return screeningRepository.findAll();
+    }
+
     public Optional<Screening> getScreeningById(Long screeningId){
         return screeningRepository.findById(screeningId);
     }
