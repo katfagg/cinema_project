@@ -54,6 +54,17 @@ public class ScreenService {
         screenRepository.save(screen);
     }
 
+    public void deleteAllMoviesFromScreen(long movieId, long screenId){
+        Optional<Screen> screen = screenRepository.findById(screenId);
+        if(!screen.isPresent()){
+            return;
+        }
+        List<Screening> screenings = screen.get().getScreenings();
+        for(Screening screening : screenings){
+            screening.setMovie(null);
+        }
+    }
+
 
 
 
