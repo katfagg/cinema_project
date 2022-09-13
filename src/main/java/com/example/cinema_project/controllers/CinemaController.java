@@ -93,10 +93,10 @@ public class CinemaController {
         return new ResponseEntity<>(screen, HttpStatus.OK);
     }
 
-    @PatchMapping(value = "/movie")
-    public ResponseEntity<Movie> addNewMovie(@RequestBody Movie movie){
-        Movie savedMovie = cinemaService.addNewMovie(movie);
-        return new ResponseEntity<>(savedMovie, HttpStatus.OK);
+    @PatchMapping(value = "/{id}/movie")
+    public ResponseEntity<Cinema> addMovieToCinema(@RequestBody Movie movie, @PathVariable long id){
+        Cinema newMovie = cinemaService.addNewMovieToCinema(movie, id);
+        return new ResponseEntity<>(newMovie, HttpStatus.OK);
     }
 
     @PostMapping
