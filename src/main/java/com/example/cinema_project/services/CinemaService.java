@@ -25,13 +25,13 @@ public class CinemaService {
         return movie;
     }
 
-    public List<Movie> cancelMovie(long id){
+    public static List<Movie> cancelMovie(long id){
         movieRepository.deleteById(id);
     }
 
-    public List<Screen> addNewScreen(Screen screen){
-        screenRepository.save(screen);
-        return screen;
+    public List<Screen> addNewScreen(Screen newScreen){
+        screenRepository.save(newScreen);
+        return newScreen;
     }
 
     public Screen addMovieToScreen(long screenId, long movieId){

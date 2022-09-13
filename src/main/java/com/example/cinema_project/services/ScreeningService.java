@@ -55,8 +55,12 @@ public class ScreeningService {
             return screening.get();
         }else{
             Screen screen = screenService.getScreenById(screenId);
-            Screening newScreening = new Screening(movie.get(), screen);
-            return newScreening;
+            if(movie.isPresent()){
+                Screening newScreening = new Screening(movie.get(), screen);
+                return newScreening;
+            }else{
+                return null;
+            }
         }
     }
 }
