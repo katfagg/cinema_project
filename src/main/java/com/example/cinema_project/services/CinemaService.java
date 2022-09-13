@@ -35,7 +35,7 @@ public class CinemaService {
         return cinema;
     }
 
-    public Screen addScreenToCinema(Screen screen, long cinemaId){
+    public Cinema addScreenToCinema(Screen screen, long cinemaId){
         Cinema cinema = cinemaRepository.findById(cinemaId). get();
         List<Screen> screens = cinema.getScreens();
         screens.add(screen);
