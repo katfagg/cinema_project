@@ -16,26 +16,29 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/cinema")
+@RequestMapping("/cinemas")
 public class CinemaController {
+
+//    1. cinemaRepo (done)
+//    2. cinemaService => addMovie => add movie to cinema movie List (tariq)
+//    3. cinemaService => addScreenToCinema => add to list (kat)
+//    4. cinemaController => PostMapping(/{id}/screens) (kat)
+//    5. cinemaService => getAllCinemas/id/add
+//    6. cinemaController => getAllCinemas...
 
     @Autowired
     CinemaService cinemaService;
-    @Autowired
-    CustomerService customerService;
 
     @Autowired
     ScreenService screenService;
-    @Autowired
-    ScreeningService screeningService;
 
-    @GetMapping
+    @GetMapping("/movies")
     public ResponseEntity<List<Movie>> getAllMovies() {
         List<Movie> movies = cinemaService.getAllMovies();
         return new ResponseEntity<>(movies, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/movies/{id}")
     public ResponseEntity<Movie> getMovieById(@PathVariable long id){
         Optional<Movie> movie = cinemaService.getMovieById(id);
         if(movie.isPresent()){
@@ -86,16 +89,44 @@ public class CinemaController {
         return new ResponseEntity<>(screen, HttpStatus.OK);
     }
 
-    @PatchMapping(value = "/movie")
-    public ResponseEntity<Movie> addNewMovie(@RequestBody Movie movie){
-        Movie savedMovie = cinemaService.addNewMovie(movie);
-        return new ResponseEntity<>(savedMovie, HttpStatus.OK);
+    @PatchMapping(value = "/{id}/movie")
+    public ResponseEntity<Cinema> addMovieToCinema(@RequestBody Movie movie, @PathVariable long id){
+        Cinema newMovie = cinemaService.addNewMovieToCinema(movie, id);
+        return new ResponseEntity<>(newMovie, HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Cinema> createCinema(@RequestBody String branch) {
-        Cinema cinema = new Cinema(branch);
-        return new ResponseEntity<>(cinema, HttpStatus.CREATED);
+    public ResponseEntity<Cinema> createCinema(@RequestBody Cinema cinema) {
+        Cinema savedCinema = cinemaService.addNewCinema(cinema);
+        return new ResponseEntity<>(savedCinema, HttpStatus.CREATED);
     }
+
+    @GetMapping
+    public ResponseEntity<List<Cinema>> getAllCinemas() {
+        List<Cinema> cinemas = cinemaService.getAllCinemas();
+        return new ResponseEntity<>(cinemas, HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Cinema> getCinemaById(@PathVariable long id){
+        Optional<Cinema> cinema = cinemaService.getCinemaById(id);
+        if(cinema.isPresent()){
+            return new ResponseEntity<>(cinema.get(), HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PostMapping("/{id}/screens")
+    public ResponseEntity<Screen> addScreenToCinema(@RequestBody Screen newScreen){
+        Screen screen = cinemaService.addScreenToCinema(newScreen);
+        return new ResponseEntity<>(screen, HttpStatus.OK);
+    }
+
+//    @DeleteMapping
+//    public ResponseEntity deleteScreen(long id){
+//        screenService.removeScreen(id);
+//        return new ResponseEntity<>(null. HttpStatus.NO_CONTENT);
+//    }
 
 }

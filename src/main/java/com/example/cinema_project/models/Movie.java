@@ -21,7 +21,7 @@ public class Movie {
     private String genre;
     @OneToMany(mappedBy = "movie")
     @JsonIgnoreProperties({"movie"})
-    private List<Screen> screenings;
+    private List<Screening> screenings;
 
     public Movie(String title, int length, int releaseDate, String genre) {
         this.title = title;
@@ -74,11 +74,11 @@ public class Movie {
         this.genre = genre;
     }
 
-    public List<Screen> getScreenings() {
+    public List<Screening> getScreenings() {
         return screenings;
     }
 
-    public void setScreenings(List<Screen> screenings) {
+    public void setScreenings(List<Screening> screenings) {
         this.screenings = screenings;
     }
 }

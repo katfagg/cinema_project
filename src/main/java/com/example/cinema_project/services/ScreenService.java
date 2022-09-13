@@ -17,41 +17,34 @@ import java.util.Optional;
 public class ScreenService {
 
     @Autowired
-    MovieRepository movieRepository;
-
-    @Autowired
     ScreenRepository screenRepository;
-
-    @Autowired
-    CinemaService cinemaService;
-
-    @Autowired
-    ScreeningService screeningService;
-
     @Autowired
     ScreeningRepository screeningRepository;
 
-
-
-
-
     public Screen addScreeningToScreen(long screenId, long screeningId){
-        Screen screen = screenRepository.findById(screenId).get();
-        Optional<Screening> screening = screeningService.getScreeningById(screeningId);
-        List<Screening> screenings = screen.getScreenings();
-        screenings.add(screening.get());
-        screen.setScreenings(screenings);
-        screenRepository.save(screen);
-        return screen;
+        Optional<Screen> screen = screenRepository.findById(screenId);
+        Optional<Screening> screening = screeningRepository.findById(screeningId);
+        if(!screen.isPresent()) return null;
+        if(screening.isPresent()) {
+            List<Screening> screenings = screen.get().getScreenings();
+            screenings.add(screening.get());
+            screen.get().setScreenings(screenings);
+            screenRepository.save(screen.get());
+
+        }
+        return screen.get();
     }
 
     public void removeScreeningFromScreen(long screenId, long screeningId){
-        Screen screen = screenRepository.findById(screenId).get();
-        Optional<Screening> screening = screeningService.getScreeningById(screeningId);
-        List<Screening> screenings = screen.getScreenings();
-        screenings.remove(screening.get());
-        screen.setScreenings(screenings);
-        screenRepository.save(screen);
+        Optional<Screen> screen = screenRepository.findById(screenId);
+        Optional<Screening> screening = screeningRepository.findById(screeningId);
+        if(!screen.isPresent()) return;
+        if(screening.isPresent()) {
+            List<Screening> screenings = screen.get().getScreenings();
+            screenings.remove(screening.get());
+            screen.get().setScreenings(screenings);
+            screenRepository.save(screen.get());
+        }
     }
 
 

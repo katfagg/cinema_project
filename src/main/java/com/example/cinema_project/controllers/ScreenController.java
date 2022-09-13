@@ -88,8 +88,17 @@ public class ScreenController {
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity removeScreeningFromScreen(@PathVariable long screenId, @RequestParam long screeningId){
-        screenService.removeScreeningFromScreen(screenId, screeningId);
+    public ResponseEntity removeScreeningFromScreen(
+            @PathVariable long screenId,
+            @RequestParam long screeningId,
+            @RequestParam Optional<Long> movieId
+    ){
+        if(movieId.isPresent()){
+            screeningService.removeMovieFromScreening(movieId.get(),screeningId,screenId);
+        }else{
+            screenService.removeScreeningFromScreen(screenId, screeningId);
+        }
         return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
     }
+
 }
