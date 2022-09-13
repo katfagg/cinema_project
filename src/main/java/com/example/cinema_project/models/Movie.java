@@ -19,16 +19,22 @@ public class Movie {
     private int releaseDate;
     @Column
     private String genre;
+    @ManyToOne
+    @JoinColumn(name = "cinema_id")
+    @JsonIgnoreProperties({"movies"})
+    private Cinema cinema;
+
     @OneToMany(mappedBy = "movie")
     @JsonIgnoreProperties({"movie"})
     private List<Screening> screenings;
 
-    public Movie(String title, int length, int releaseDate, String genre) {
+    public Movie(String title, int length, int releaseDate, String genre, Cinema cinema) {
         this.title = title;
         this.length = length;
         this.releaseDate = releaseDate;
         this.genre = genre;
         this.screenings = new ArrayList<>();
+        this.cinema = cinema;
     }
 
     public Movie() {
@@ -80,5 +86,13 @@ public class Movie {
 
     public void setScreenings(List<Screening> screenings) {
         this.screenings = screenings;
+    }
+
+    public Cinema getCinema() {
+        return cinema;
+    }
+
+    public void setCinema(Cinema cinema) {
+        this.cinema = cinema;
     }
 }

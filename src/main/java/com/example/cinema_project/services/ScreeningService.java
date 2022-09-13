@@ -51,9 +51,7 @@ public class ScreeningService {
         return screening;
     }
 
-//    todo: if movie is not present
-//    screening -> movie Screen 1 => screening 1 (9 am), screening 2 (2.30 pm)
-//    screening 1 (9 am) plays 1 movie
+
     public Screening addMovieToScreening(long movieId, long screeningId, long screenId){
         Optional<Screening> screening = screeningRepository.findById(screeningId);
         Optional<Movie> movie = cinemaService.getMovieById(movieId);

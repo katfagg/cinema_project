@@ -17,17 +17,22 @@ public class Screen {
 
     @Column(name = "capacity")
     private int capacity;
-
-//    @Column
-//    private List<Movie> movies;
+    
+    
+    @ManyToOne
+    @JoinColumn(name = "cinema_id")
+    @JsonIgnoreProperties({"screens"})
+    private  Cinema cinema;
+    
 
     @OneToMany(mappedBy = "screen")
     @JsonIgnoreProperties({"screen"})
     List<Screening> screenings;
 
-    public Screen(int capacity) {
+    public Screen(int capacity, Cinema cinema) {
         this.capacity = capacity;
         this.screenings = new ArrayList<>();
+        this.cinema = cinema;
     }
 
     public Screen(){
@@ -49,20 +54,20 @@ public class Screen {
     public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
-
-//    public List<Movie> getMovies() {
-//        return movies;
-//    }
-//
-//    public void setMovies(List<Movie> movies) {
-//        this.movies = movies;
-//    }
-
+    
     public List<Screening> getScreenings() {
         return screenings;
     }
 
     public void setScreenings(List<Screening> screenings) {
         this.screenings = screenings;
+    }
+
+    public Cinema getCinema() {
+        return cinema;
+    }
+
+    public void setCinema(Cinema cinema) {
+        this.cinema = cinema;
     }
 }

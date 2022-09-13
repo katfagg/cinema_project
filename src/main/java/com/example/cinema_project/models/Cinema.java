@@ -2,15 +2,24 @@ package com.example.cinema_project.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-
+@Entity(name = "cinemas")
 public class Cinema {
-
+        
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
         private long id;
+        
+        @Column
         private String branch;
+        @OneToMany(mappedBy = "cinema")
+        @JsonIgnoreProperties({"cinema"})
+        
         private List<Movie> movies;
+        @OneToMany(mappedBy = "cinema")
+        @JsonIgnoreProperties({"cinema"})
         private List<Screen> screens;
 
     public Cinema(String branch) {

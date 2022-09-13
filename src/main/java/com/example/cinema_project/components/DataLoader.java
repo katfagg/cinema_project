@@ -53,33 +53,21 @@ public class DataLoader implements ApplicationRunner{
         customerRepository.save(customer9);
         customerRepository.save(customer10);
 
-        // List<String> customersList = Arrays.asList(
+        Cinema cinema = new Cinema("Not Cineworld");
 
-        //        "Tariq",
-        //      "Yongran",
-        //       "Kat",
-        //       "Guy"
-
-        //);
-
-        // for (String customerName : customersList) {
-        //      Customer customer = new Customer(customerName);
-        //     customerRepository.save(customer);
-        // }
-
-        Movie movie = new Movie("Titanic", 194, 1997, "Historical Drama");
-        Movie movie1 = new Movie("300", 117, 2006, "Action");
-        Movie movie2 = new Movie("The Godfather", 175, 1972, "Action");
-        Movie movie3 = new Movie("The Incredibles", 105, 2004, "Childrens");
-        Movie movie4 = new Movie("I, Robot", 115, 2004, "Sci-fi");
-        Movie movie5 = new Movie("xXx", 124, 2002, "Action");
-        Movie movie6 = new Movie("The Green Mile", 189, 1999, "Drama");
-        Movie movie7 = new Movie("Avengers Endgame", 180, 2019, "Action");
-        Movie movie8 = new Movie("Crazy Stupid Love", 120, 2011, "Comedy");
-        Movie movie9 = new Movie("The Shawshank Redemption", 142, 1994, "Drama");
-        Movie movie10 = new Movie("Inception", 140, 2010, "Sci-fi");
-        Movie movie11 = new Movie("The Ugly Truth", 96, 2009, "Comedy");
-        Movie movie12 = new Movie("Hacksaw Ridge", 139, 2016, "Historical Drama");
+        Movie movie = new Movie("Titanic", 194, 1997, "Historical Drama", cinema);
+        Movie movie1 = new Movie("300", 117, 2006, "Action", cinema);
+        Movie movie2 = new Movie("The Godfather", 175, 1972, "Action", cinema);
+        Movie movie3 = new Movie("The Incredibles", 105, 2004, "Childrens", cinema);
+        Movie movie4 = new Movie("I, Robot", 115, 2004, "Sci-fi", cinema);
+        Movie movie5 = new Movie("xXx", 124, 2002, "Action", cinema);
+        Movie movie6 = new Movie("The Green Mile", 189, 1999, "Drama", cinema);
+        Movie movie7 = new Movie("Avengers Endgame", 180, 2019, "Action", cinema);
+        Movie movie8 = new Movie("Crazy Stupid Love", 120, 2011, "Comedy", cinema);
+        Movie movie9 = new Movie("The Shawshank Redemption", 142, 1994, "Drama", cinema);
+        Movie movie10 = new Movie("Inception", 140, 2010, "Sci-fi", cinema);
+        Movie movie11 = new Movie("The Ugly Truth", 96, 2009, "Comedy", cinema);
+        Movie movie12 = new Movie("Hacksaw Ridge", 139, 2016, "Historical Drama", cinema);
 
         movieRepository.save(movie1);
         movieRepository.save(movie2);
@@ -94,11 +82,11 @@ public class DataLoader implements ApplicationRunner{
         movieRepository.save(movie11);
         movieRepository.save(movie12);
 
-        Cinema cinema = new Cinema("Not Cineworld");
+        
 
-        Screen screen1 = new Screen(4);
-        Screen screen2 = new Screen(5);
-        Screen screen3 = new Screen(6);
+        Screen screen1 = new Screen(4, cinema);
+        Screen screen2 = new Screen(5, cinema);
+        Screen screen3 = new Screen(6, cinema);
 
         screenRepository.save(screen1);
         screenRepository.save(screen2);
