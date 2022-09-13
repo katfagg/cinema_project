@@ -63,7 +63,7 @@ public class ScreenService {
         List<Screening> screenings = screen.get().getScreenings();
         for(Screening screening : screenings){
             if(screening.getMovie() == movie.get()){
-                screening.setMovie(null);
+                screeningService.removeMovieFromScreening(movieId,screening.getId(),screenId);
             }
         }
     }
