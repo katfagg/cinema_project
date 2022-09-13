@@ -56,12 +56,15 @@ public class ScreenService {
 
     public void deleteAllMoviesFromScreen(long movieId, long screenId){
         Optional<Screen> screen = screenRepository.findById(screenId);
-        if(!screen.isPresent()){
+        Optional<Movie> movie = movieRepository.findById(movieId);
+        if(!screen.isPresent() || !movie.isPresent()){
             return;
         }
         List<Screening> screenings = screen.get().getScreenings();
         for(Screening screening : screenings){
-            screening.setMovie(null);
+            if(screening.getMovie() == movie.get()){
+                screening.setMovie(null);
+            }
         }
     }
 
