@@ -76,4 +76,29 @@ public class ScreeningService {
             return null;
         }
     }
+
+    public Screening removeMovieFromScreening(long movieId, long screeningId, long screenId){
+        Optional<Screening> screening = screeningRepository.findById(screeningId);
+        Optional<Movie> movie = cinemaService.getMovieById(movieId);
+        if(screening.isPresent()){
+            if(movie.isPresent()){
+                screening.get().setMovie(null);
+                screeningRepository.save(screening.get());
+                screenService.addScreeningToScreen(screenId, screeningId);
+            }
+            return screening.get();
+        }else{
+            Optional<Screen> screen = screenService.getScreenById(screenId);
+            if(screen.isPresent()){
+                if(movie.isPresent()){
+                    Screening newScreening = new Screening(null, screen.get());
+                    screenService.addScreeningToScreen(screenId, screeningId);
+                    return newScreening;
+                }else{
+                    return null;
+                }
+            }
+            return null;
+        }
+    }
 }
