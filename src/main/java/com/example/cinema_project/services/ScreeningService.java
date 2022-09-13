@@ -6,10 +6,12 @@ import com.example.cinema_project.models.Screen;
 import com.example.cinema_project.models.Screening;
 import com.example.cinema_project.repositories.ScreeningRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class ScreeningService {
 
     @Autowired
@@ -37,7 +39,7 @@ public class ScreeningService {
         return screening;
     }
 
-    public Screening addCustomerToScreening(Long customerId, Long screeningId){
+    public Screening addCustomerToScreening(long customerId, Long screeningId){
         Screening screening = screeningRepository.findById(screeningId).get();
         Optional<Customer> customer = customerService.getCustomerById(customerId);
         if(customer.isPresent()){

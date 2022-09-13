@@ -60,9 +60,15 @@ public class ScreenController {
         return new ResponseEntity<>(savedScreen, HttpStatus.CREATED);
     }
 
-    @PatchMapping("/{id}")
+    @PatchMapping(value = "/{id}")
     public ResponseEntity<Screen> addScreeningToScreen(@PathVariable long screenId, @RequestParam long screeningId){
         Screen screen = screenService.addScreeningToScreen(screenId, screeningId);
         return new ResponseEntity<>(screen, HttpStatus.OK);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity removeScreeningFromScreen(@PathVariable long screenId, @RequestParam long screeningId){
+        screenService.removeScreeningFromScreen(screenId, screeningId);
+        return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
     }
 }

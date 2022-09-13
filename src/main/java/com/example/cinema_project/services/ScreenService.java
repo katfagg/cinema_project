@@ -45,15 +45,14 @@ public class ScreenService {
         return screen;
     }
 
-    public Screen removeScreeningFromScreen(long screenId, long screeningId){
+    public void removeScreeningFromScreen(long screenId, long screeningId){
         Screen screen = screenRepository.findById(screenId).get();
         Optional<Screening> screening = screeningService.getScreeningById(screeningId);
         List<Screening> screenings = screen.getScreenings();
         screenings.remove(screening.get());
         screen.setScreenings(screenings);
         screenRepository.save(screen);
-        return screen;
-        }
+    }
 
 
 
