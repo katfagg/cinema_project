@@ -43,9 +43,13 @@ public class CinemaController {
 
     @PatchMapping("/screenings/{id}")
     public ResponseEntity<Screening> addCustomerToScreening(@PathVariable  long id, @RequestBody Screening screening) {
-        Optional<Customer> customerId = customerService.getCustomerById(id);
-        Screening updatedScreening = screeningService.addCustomerToScreening(customerId, screening.getId());
-        return new ResponseEntity<>(updatedScreening, HttpStatus.OK);
+        Optional<Customer> customer = customerService.getCustomerById(id);
+        if(customer.isPresent()){
+            Screening updatedScreening = screeningService.addCustomerToScreening(customer.get(), screening.getId());
+            return new ResponseEntity<>(updatedScreening, HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
 //        screening = ScreeningService.addCustomerToScreening(screening);
 //        return new ResponseEntity<>(movie, HttpStatus.CREATED);
     }
