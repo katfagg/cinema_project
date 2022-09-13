@@ -19,7 +19,7 @@ public class ScreeningService {
     CustomerService customerService;
 
     @Autowired
-    CinemaService cinemaService;
+    ScreenService screenService;
 
     public Screening addCustomerToScreening(Long customerId, Long screeningId){
         Screening screening = screeningRepository.findById(screeningId).get();
@@ -33,19 +33,22 @@ public class ScreeningService {
         return screening;
     }
 
-    public Screening addMovieToScreening(long movieId, long screeningId){
-        Screening screening = screeningRepository.findById(screeningId).get();
-        Optional<Movie> movie = cinemaService.getMovieById(movieId);
-        if(movie.isPresent()){
-            movies.add(movie.get());
-            screening.setMovie(movie);
-            screeningRepository.save(movie);
+//    todo: if movie is not present
+//    screening -> movie Screen 1 => screening 1 (9 am), screening 2 (2.30 pm)
+//    screening 1 (9 am) plays 1 movie
+    public Screening addMovieToScreening(long movieId, long screeningId, long screenId){
+        Optional<Screening> screening = screeningRepository.findById(screeningId);
+        Optional<Movie> movie = screenService.getMovieById(movieId);
+        if(screening.isPresent()){
+            if(movie.isPresent()){
+                screening.get().setMovie(movie.get());
+                screeningRepository.save(screening.get());
+            }
+            return screening.get();
+        }else{
+            Screen screen = screenService.getScreenById(screenId);
+            Screening newScreening = new Screening(movie.get(), screen);
+            return newScreening;
         }
-        return screening
-        movies = screening.getMovies();
-        movies.add(movie);
-        screening.setMovies(movie);
-        screeningRepository.save(movie);
-        return screening;
     }
 }
