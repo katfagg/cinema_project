@@ -12,6 +12,7 @@ import java.util.List;
 @Service
 public class CinemaService {
     @Autowired
+    static
     MovieRepository movieRepository;
     @Autowired
     ScreenRepository screenRepository;
@@ -29,9 +30,9 @@ public class CinemaService {
         movieRepository.deleteById(id);
     }
 
-    public List<Screen> addNewScreen(Screen screen){
-        screenRepository.save(screen);
-        return screen;
+    public List<Screen> addNewScreen(Screen Screen){
+        screenRepository.save(Screen);
+        return Screen;
     }
 
     public Screen addMovieToScreen(long screenId, long movieId){
