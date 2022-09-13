@@ -21,32 +21,38 @@ public class CinemaService {
         return movieRepository.findAll();
     }
 
-    public List<Movie> addNewMovie(Movie movie){
+    public Movie addNewMovie(Movie movie){
         movieRepository.save(movie);
         return movie;
     }
 
-    public List<Movie> cancelMovie(long id){
+    public void cancelMovie(long id){
         movieRepository.deleteById(id);
     }
 
-    public List<Screen> addNewScreen(Screen Screen){
-        screenRepository.save(Screen);
-        return Screen;
-    }
-
-    public Screen addMovieToScreen(long screenId, long movieId){
-        Screen screen = screenRepository.findById(screenId).get();
-        Movie movie = movieService.getMovieById(movieId);
-        List<Movies> movies = screen.getMovies();
-        movies.add(movie);
-        screen.setMovies(movies);
-        screenRepository.save(movie);
+    public Screen addNewScreen(Screen screen){
+        screenRepository.save(screen);
         return screen;
     }
 
-    public List<Screen> removeScreen(long id){
+//    public Screen addMovieToScreen(long screenId, long movieId){
+//        Screen screen = screenRepository.findById(screenId).get();
+//        Movie movie = movieService.getMovieById(movieId);
+//        List<Movies> movies = screen.getMovies();
+//        movies.add(movie);
+//        screen.setMovies(movies);
+//        screenRepository.save(movie);
+//        return screen;
+//    }
+
+
+
+    public void removeScreen(long id){
         screenRepository.deleteById(id);
+    }
+
+    public List<Screen> getAllScreens(){
+        return screenRepository.findAll();
     }
 
 
