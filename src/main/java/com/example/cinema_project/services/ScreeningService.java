@@ -6,10 +6,12 @@ import com.example.cinema_project.models.Screen;
 import com.example.cinema_project.models.Screening;
 import com.example.cinema_project.repositories.ScreeningRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class ScreeningService {
 
     @Autowired
