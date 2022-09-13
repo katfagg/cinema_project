@@ -59,31 +59,37 @@ public class CinemaController {
 ////        return new ResponseEntity<>(movie, HttpStatus.CREATED);
 //    }
 
-    @PatchMapping(value = "/screenings/{id}")
-    public ResponseEntity<Screening> addMultiParamsToScreening(
-            @PathVariable long screeningId,
-            @RequestParam Optional<Long> customerId,
-            @RequestParam Optional<Long> screenId,
-            @RequestParam Optional<Long> movieId
-    ) {
-        Optional<Screening> screening = screeningService.getScreeningById(screeningId);
-        if(screening.isPresent()){
-            Screening updatedScreening;
-            if(customerId.isPresent()){
-                updatedScreening = screeningService.addCustomerToScreening(customerId.get(), screeningId);
-                return new ResponseEntity<>(updatedScreening, HttpStatus.OK);
-            }else if(screenId.isPresent() && movieId.isPresent()){
-                updatedScreening = screeningService.addMovieToScreening(movieId.get(),screeningId, screenId.get());
-                return new ResponseEntity<>(updatedScreening, HttpStatus.OK);
-            }
-        }
-        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-    }
+//    @PatchMapping(value = "/screenings/{id}")
+//    public ResponseEntity<Screening> addMultiParamsToScreening(
+//            @PathVariable long screeningId,
+//            @RequestParam Optional<Long> customerId,
+//            @RequestParam Optional<Long> screenId,
+//            @RequestParam Optional<Long> movieId
+//    ) {
+//        Optional<Screening> screening = screeningService.getScreeningById(screeningId);
+//        if(screening.isPresent()){
+//            Screening updatedScreening;
+//            if(customerId.isPresent()){
+//                updatedScreening = screeningService.addCustomerToScreening(customerId.get(), screeningId);
+//                return new ResponseEntity<>(updatedScreening, HttpStatus.OK);
+//            }else if(screenId.isPresent() && movieId.isPresent()){
+//                updatedScreening = screeningService.addMovieToScreening(movieId.get(),screeningId, screenId.get());
+//                return new ResponseEntity<>(updatedScreening, HttpStatus.OK);
+//            }
+//        }
+//        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+//    }
 
     @PatchMapping
     public ResponseEntity<Screen> addScreen(@RequestBody Screen newScreen) {
         Screen screen = screenService.addNewScreen(newScreen);
-        return new ResponseEntity<>(newScreen, HttpStatus.OK);
+        return new ResponseEntity<>(screen, HttpStatus.OK);
+    }
+
+    @PatchMapping(value = "/movie")
+    public ResponseEntity<Movie> addNewMovie(@RequestBody Movie movie){
+        Movie savedMovie = cinemaService.addNewMovie(movie);
+        return new ResponseEntity<>(savedMovie, HttpStatus.OK);
     }
 
     @PostMapping

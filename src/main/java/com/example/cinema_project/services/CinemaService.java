@@ -51,13 +51,13 @@ public class CinemaService {
 
 
 
-    public void removeScreen(long id){
-        screenRepository.deleteById(id);
-    }
+//    public void removeScreen(long id){
+//        screenRepository.deleteById(id);
+//    }
 
-    public List<Screen> getAllScreens(){
-        return screenRepository.findAll();
-    }
+//    public List<Screen> getAllScreens(){
+//        return screenRepository.findAll();
+//    }
 
     public Optional<Movie> getMovieById(Long id){
         return movieRepository.findById(id);

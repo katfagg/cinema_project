@@ -71,6 +71,10 @@ public class ScreenService {
         return screen;
     }
 
+    public void removeScreen(long id){
+        screenRepository.deleteById(id);
+    }
+
     }
 
 
