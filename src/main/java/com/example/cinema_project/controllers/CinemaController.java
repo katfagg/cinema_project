@@ -89,10 +89,16 @@ public class CinemaController {
         return new ResponseEntity<>(screen, HttpStatus.OK);
     }
 
-    @PatchMapping(value = "/{id}/movie")
+    @PostMapping(value = "/{id}/movies")
     public ResponseEntity<Cinema> addMovieToCinema(@RequestBody Movie movie, @PathVariable long id){
         Cinema newMovie = cinemaService.addNewMovieToCinema(movie, id);
         return new ResponseEntity<>(newMovie, HttpStatus.OK);
+    }
+
+    @PostMapping("/{id}/screens")
+    public ResponseEntity<Screen> addScreenToCinema(@RequestBody Screen screen, @PathVariable long id){
+        Screen newScreen = cinemaService.addScreenToCinema(screen, id);
+        return new ResponseEntity<>(newScreen, HttpStatus.OK);
     }
 
     @PostMapping
@@ -117,11 +123,7 @@ public class CinemaController {
         }
     }
 
-    @PostMapping("/{id}/screens")
-    public ResponseEntity<Screen> addScreenToCinema(@RequestBody Screen newScreen){
-        Screen screen = cinemaService.addScreenToCinema(newScreen);
-        return new ResponseEntity<>(screen, HttpStatus.OK);
-    }
+
 
 //    @DeleteMapping
 //    public ResponseEntity deleteScreen(long id){
