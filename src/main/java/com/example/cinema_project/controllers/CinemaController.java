@@ -60,7 +60,7 @@ public class CinemaController {
         cinemaService.cancelMovie(id);
         return new ResponseEntity(null, HttpStatus.NO_CONTENT);
     }
-    
+
     @PostMapping(value = "/{id}/movies")
     public ResponseEntity<Cinema> addMovieToCinema(@RequestBody Movie movie, @PathVariable long id){
         Cinema newMovie = cinemaService.addNewMovieToCinema(movie, id);

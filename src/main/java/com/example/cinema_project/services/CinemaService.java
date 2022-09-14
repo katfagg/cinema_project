@@ -44,8 +44,9 @@ public class CinemaService {
         List<Screen> screens = cinema.getScreens();
         screens.add(screen);
         cinema.setScreens(screens);
-        cinemaRepository.save(cinema);
+        screen.setCinema(cinema);
         screenRepository.save(screen);
+        cinemaRepository.save(cinema);
         return cinema;
     }
 
