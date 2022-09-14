@@ -21,11 +21,11 @@ public class Movie {
     private String genre;
     @ManyToOne
     @JoinColumn(name = "cinema_id")
-    @JsonIgnoreProperties({"movies"})
+    @JsonIgnoreProperties({"movies","screens"})
     private Cinema cinema;
 
     @OneToMany(mappedBy = "movie")
-    @JsonIgnoreProperties({"movie"})
+    @JsonIgnoreProperties({"movie", "screens"})
     private List<Screening> screenings;
 
     public Movie(String title, int length, int releaseDate, String genre, Cinema cinema) {
