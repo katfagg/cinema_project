@@ -60,13 +60,13 @@ public class ScreenController {
 //        return new ResponseEntity<>(savedScreen, HttpStatus.CREATED);
 //    }
 
-    @PostMapping(value = "/{id}")
+    @PostMapping(value = "/{screenId}")
     public ResponseEntity<Screen> addScreeningToScreen(@PathVariable long screenId, @RequestParam long screeningId){
         Screen screen = screenService.addScreeningToScreen(screenId, screeningId);
-        return new ResponseEntity<>(screen, HttpStatus.OK);
+        return new ResponseEntity<>(screen, HttpStatus.CREATED);
     }
 
-    @PatchMapping(value = "/{screenId}/screenings/{id}")
+    @PostMapping(value = "/{screenId}/screenings/{screeningId}")
     public ResponseEntity<Screening> addMultiParamsToScreening(
             @PathVariable long screeningId,
             @PathVariable long screenId,
@@ -79,16 +79,16 @@ public class ScreenController {
             Screening updatedScreening;
             if(customerId.isPresent()){
                 updatedScreening = screeningService.addCustomerToScreening(customerId.get(), screeningId);
-                return new ResponseEntity<>(updatedScreening, HttpStatus.OK);
+                return new ResponseEntity<>(updatedScreening, HttpStatus.CREATED);
             }else if(movieId.isPresent()){
                 updatedScreening = screeningService.addMovieToScreening(movieId.get(),screeningId, screenId,cinemaId.get());
-                return new ResponseEntity<>(updatedScreening, HttpStatus.OK);
+                return new ResponseEntity<>(updatedScreening, HttpStatus.CREATED);
             }
         }
         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
-    @DeleteMapping(value = "/{id}")
+    @DeleteMapping(value = "/{screenId}")
     public ResponseEntity removeScreeningFromScreen(
             @PathVariable long screenId,
             @RequestParam long cinemaId,

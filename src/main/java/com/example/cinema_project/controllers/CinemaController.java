@@ -60,38 +60,17 @@ public class CinemaController {
         cinemaService.cancelMovie(id);
         return new ResponseEntity(null, HttpStatus.NO_CONTENT);
     }
-
-//    todo: cinema object in movie, how to create a movie object within a cinema object?
+    
     @PostMapping(value = "/{id}/movies")
-    public ResponseEntity<Cinema> addMovieToCinema(
-            @RequestBody Movie movie,
-//            @RequestParam String title,
-//            @RequestParam int length,
-//            @RequestParam int releaseDate,
-//            @RequestParam String genre,
-            @PathVariable long id
-    ){
-//        Optional<Cinema> cinema = cinemaService.getCinemaById(id);
-//        if(cinema.isPresent()){
-//            Movie movie = new Movie(title, length, releaseDate, genre, cinema.get());
-//            Cinema newScreen = cinemaService.addNewMovieToCinema(movie, id);
-//            return new ResponseEntity<>(newScreen, HttpStatus.OK);
-//        }
+    public ResponseEntity<Cinema> addMovieToCinema(@RequestBody Movie movie, @PathVariable long id){
         Cinema newMovie = cinemaService.addNewMovieToCinema(movie, id);
-        return new ResponseEntity<>(newMovie, HttpStatus.OK);
-//        return new ResponseEntity<>(null, HttpStatus.OK);
+        return new ResponseEntity<>(newMovie, HttpStatus.CREATED);
     }
 
-    //    todo: cinema object in screen, how to create a screen within a cinema object?
     @PostMapping(value = "/{id}/screens")
-    public ResponseEntity<Cinema> addScreenToCinema(@RequestParam int capacity, @PathVariable long id){
-        Optional<Cinema> cinema = cinemaService.getCinemaById(id);
-        if(cinema.isPresent()){
-            Screen screen = new Screen(capacity, cinema.get());
-            Cinema newScreen = cinemaService.addScreenToCinema(screen, id);
-            return new ResponseEntity<>(newScreen, HttpStatus.OK);
-        }
-        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    public ResponseEntity<Cinema> addScreenToCinema(@RequestParam Screen screen, @PathVariable long id){
+        Cinema newScreen = cinemaService.addScreenToCinema(screen, id);
+        return new ResponseEntity<>(newScreen, HttpStatus.CREATED);
     }
 
     @PostMapping

@@ -33,8 +33,9 @@ public class CinemaService {
         List<Movie> movies = cinema.getMovies();
         movies.add(movie);
         cinema.setMovies(movies);
-        cinemaRepository.save(cinema);
+        movie.setCinema(cinema);
         movieRepository.save(movie);
+        cinemaRepository.save(cinema);
         return cinema;
     }
 
