@@ -4,6 +4,7 @@ import com.example.cinema_project.models.Customer;
 import com.example.cinema_project.models.Movie;
 import com.example.cinema_project.models.Screen;
 import com.example.cinema_project.models.Screening;
+import com.example.cinema_project.repositories.MovieRepository;
 import com.example.cinema_project.repositories.ScreeningRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,9 @@ public class ScreeningService {
 
     @Autowired
     ScreeningRepository screeningRepository;
+
+    @Autowired
+    MovieRepository movieRepository;
 
     @Autowired
     CustomerService customerService;
@@ -63,27 +67,29 @@ public class ScreeningService {
     public Screening addMovieToScreening(long movieId, long screeningId, long screenId, long cinemaId){
         Optional<Screening> screening = screeningRepository.findById(screeningId);
         Movie movie = cinemaService.getMovieById(movieId, cinemaId);
+        Optional<Screen> screen = screenService.getScreenById(screenId);
+        if (!screen.isPresent()){
+            return null;
+        }
         if(screening.isPresent()){
             if(movie != null){
                 screening.get().setMovie(movie);
+                movie.getScreenings().add(screening.get());
+                List<Screening> screenings = movie.getScreenings();
+                screenings.add(screening.get());
+                movie.setScreenings(screenings);
+                movieRepository.save(movie);
                 screeningRepository.save(screening.get());
                 screenService.addScreeningToScreen(screenId, screeningId);
             }
             return screening.get();
         }else{
-            Optional<Screen> screen = screenService.getScreenById(screenId);
-            if(screen.isPresent()){
-                if(movie != null){
-                    Screening newScreening = new Screening(movie, screen.get());
-                    screenService.addScreeningToScreen(screenId, screeningId);
-                    return newScreening;
-                }else{
-                    return null;
+            return null;
                 }
             }
-            return null;
-        }
-    }
+
+
+
 
     public Screening removeMovieFromScreening(long movieId, long screeningId, long screenId, long cinemaId){
         Optional<Screening> screening = screeningRepository.findById(screeningId);

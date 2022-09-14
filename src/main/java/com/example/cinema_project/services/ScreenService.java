@@ -29,6 +29,8 @@ public class ScreenService {
             List<Screening> screenings = screen.get().getScreenings();
             screenings.add(screening.get());
             screen.get().setScreenings(screenings);
+            screening.get().setScreen(screen.get());
+            screeningRepository.save(screening.get());
             screenRepository.save(screen.get());
 
         }
@@ -43,6 +45,8 @@ public class ScreenService {
             List<Screening> screenings = screen.get().getScreenings();
             screenings.remove(screening.get());
             screen.get().setScreenings(screenings);
+            screening.get().setScreen(null);
+            screeningRepository.save(screening.get());
             screenRepository.save(screen.get());
         }
     }
