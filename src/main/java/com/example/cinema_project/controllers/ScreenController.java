@@ -69,17 +69,15 @@ public class ScreenController {
         Screening screening = screeningService.addCustomerToScreening(customerId, screeningId);
         return new ResponseEntity<>(screening, HttpStatus.OK);
     }
-    @PatchMapping(value = "/{id}")
 
     @PostMapping(value = "/{screenId}")
-
     public ResponseEntity<Screen> addScreeningToScreen(@PathVariable long screenId, @RequestParam long screeningId){
         Screen screen = screenService.addScreeningToScreen(screenId, screeningId);
         return new ResponseEntity<>(screen, HttpStatus.CREATED);
     }
 
     @PostMapping(value = "/{screenId}/screenings/{screeningId}")
-    public ResponseEntity<Screening> addMultiParamsToScreening(
+    public ResponseEntity<Screening> addMovieToScreening(
             @PathVariable long screeningId,
             @PathVariable long screenId,
             @RequestParam Optional<Long> cinemaId,

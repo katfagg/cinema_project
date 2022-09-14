@@ -24,7 +24,7 @@ public class Movie {
     @JsonIgnoreProperties({"movies","screens"})
     private Cinema cinema;
 
-    @OneToMany(mappedBy = "movie")
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.REMOVE)
     @JsonIgnoreProperties({"movie", "screens"})
     private List<Screening> screenings;
 

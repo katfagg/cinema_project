@@ -50,7 +50,7 @@ public class CinemaService {
         return cinema;
     }
 
-    public void cancelMovie(long id){
+    public void cancelMovie(long id, long cinemaId){
         movieRepository.deleteById(id);
     }
     
