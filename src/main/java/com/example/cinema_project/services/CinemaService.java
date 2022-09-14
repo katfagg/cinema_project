@@ -5,6 +5,7 @@ import com.example.cinema_project.models.Movie;
 import com.example.cinema_project.models.Screen;
 import com.example.cinema_project.repositories.CinemaRepository;
 import com.example.cinema_project.repositories.MovieRepository;
+import com.example.cinema_project.repositories.ScreenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,9 @@ public class CinemaService {
     @Autowired
     CinemaRepository cinemaRepository;
 
+    @Autowired
+    ScreenRepository screenRepository;
+
     public List<Movie> getAllMovies(long cinemaId){
         Cinema cinema= cinemaRepository.findById(cinemaId).get();
         return cinema.getMovies();
@@ -30,7 +34,7 @@ public class CinemaService {
         movies.add(movie);
         cinema.setMovies(movies);
         cinemaRepository.save(cinema);
-        //movieRepository.save(movie);
+        movieRepository.save(movie);
         return cinema;
     }
 
@@ -40,6 +44,7 @@ public class CinemaService {
         screens.add(screen);
         cinema.setScreens(screens);
         cinemaRepository.save(cinema);
+        screenRepository.save(screen);
         return cinema;
     }
 
