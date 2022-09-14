@@ -56,7 +56,6 @@ public class ScreenService {
         return screenRepository.findById(id);
     }
 
-//    todo: whether we need it here for screenController or addScreenToCinema in cinemaService would be fine?
     public Screen addNewScreen(Screen screen){
         screenRepository.save(screen);
         return screen;

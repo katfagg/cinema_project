@@ -55,9 +55,9 @@ public class CinemaController {
         }
     }
 
-    @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Long> cancelMovie(@PathVariable long id) {
-        cinemaService.cancelMovie(id);
+    @DeleteMapping(value = "/{id}/movies/{movieId}")
+    public ResponseEntity<Long> cancelMovie(@PathVariable long id, @PathVariable long movieId) {
+        cinemaService.cancelMovie(movieId, id);
         return new ResponseEntity(null, HttpStatus.NO_CONTENT);
     }
 
@@ -68,7 +68,7 @@ public class CinemaController {
     }
 
     @PostMapping(value = "/{id}/screens")
-    public ResponseEntity<Cinema> addScreenToCinema(@RequestParam Screen screen, @PathVariable long id){
+    public ResponseEntity<Cinema> addScreenToCinema(@RequestBody Screen screen, @PathVariable long id){
         Cinema newScreen = cinemaService.addScreenToCinema(screen, id);
         return new ResponseEntity<>(newScreen, HttpStatus.CREATED);
     }
