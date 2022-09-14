@@ -3,7 +3,6 @@ package com.example.cinema_project.services;
 import com.example.cinema_project.models.Cinema;
 import com.example.cinema_project.models.Movie;
 import com.example.cinema_project.models.Screen;
-import com.example.cinema_project.models.Screening;
 import com.example.cinema_project.repositories.CinemaRepository;
 import com.example.cinema_project.repositories.MovieRepository;
 import com.example.cinema_project.repositories.ScreenRepository;
@@ -21,8 +20,12 @@ public class CinemaService {
     @Autowired
     CinemaRepository cinemaRepository;
 
-    public List<Movie> getAllMovies(){
-        return movieRepository.findAll();
+    @Autowired
+    ScreenRepository screenRepository;
+
+    public List<Movie> getAllMovies(long cinemaId){
+        Cinema cinema= cinemaRepository.findById(cinemaId).get();
+        return cinema.getMovies();
     }
 
     public Cinema addNewMovieToCinema(Movie movie, long cinemaId){
@@ -31,50 +34,33 @@ public class CinemaService {
         movies.add(movie);
         cinema.setMovies(movies);
         cinemaRepository.save(cinema);
-        //movieRepository.save(movie);
+        movieRepository.save(movie);
         return cinema;
     }
 
-    public Screen addScreenToCinema(Screen screen, long cinemaId){
+    public Cinema addScreenToCinema(Screen screen, long cinemaId){
         Cinema cinema = cinemaRepository.findById(cinemaId). get();
         List<Screen> screens = cinema.getScreens();
         screens.add(screen);
         cinema.setScreens(screens);
         cinemaRepository.save(cinema);
+        screenRepository.save(screen);
         return cinema;
     }
 
     public void cancelMovie(long id){
         movieRepository.deleteById(id);
     }
-
-//    public Screen addNewScreen(Screen screen){
-//        screenRepository.save(screen);
-//        return screen;
-//    }
-
-//    public Screen addMovieToScreen(long screenId, long movieId){
-//        Screen screen = screenRepository.findById(screenId).get();
-//        Movie movie = movieService.getMovieById(movieId);
-//        List<Movies> movies = screen.getMovies();
-//        movies.add(movie);
-//        screen.setMovies(movies);
-//        screenRepository.save(movie);
-//        return screen;
-//    }
-
-
-
-//    public void removeScreen(long id){
-//        screenRepository.deleteById(id);
-//    }
-
-//    public List<Screen> getAllScreens(){
-//        return screenRepository.findAll();
-//    }
-
-    public Optional<Movie> getMovieById(Long id){
-        return movieRepository.findById(id);
+    
+    public Movie getMovieById(long id, long cinemaId){
+        Cinema cinema = cinemaRepository.findById(cinemaId).get();
+        List<Movie> movies = cinema.getMovies();
+        for(Movie movie : movies){
+            if(movie.getId() == id){
+                return movie;
+            }
+        }
+        return null;
     } 
 
     public List<Cinema> getAllCinemas(){

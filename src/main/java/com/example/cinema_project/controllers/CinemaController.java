@@ -16,96 +16,12 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/cinemas")
+@RequestMapping(value = "/cinemas")
 public class CinemaController {
-
-//    1. cinemaRepo (done)
-//    2. cinemaService => addMovie => add movie to cinema movie List (tariq)
-//    3. cinemaService => addScreenToCinema => add to list (kat)
-//    4. cinemaController => PostMapping(/{id}/screens) (kat)
-//    5. cinemaService => getAllCinemas/id/add
-//    6. cinemaController => getAllCinemas...
+    
 
     @Autowired
     CinemaService cinemaService;
-
-    @Autowired
-    ScreenService screenService;
-
-    @GetMapping("/movies")
-    public ResponseEntity<List<Movie>> getAllMovies() {
-        List<Movie> movies = cinemaService.getAllMovies();
-        return new ResponseEntity<>(movies, HttpStatus.OK);
-    }
-
-    @GetMapping("/movies/{id}")
-    public ResponseEntity<Movie> getMovieById(@PathVariable long id){
-        Optional<Movie> movie = cinemaService.getMovieById(id);
-        if(movie.isPresent()){
-            return new ResponseEntity<>(movie.get(), HttpStatus.OK);
-        }else{
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        }
-    }
-
-    @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Long> cancelMovie(@PathVariable long id) {
-        cinemaService.cancelMovie(id);
-        return new ResponseEntity(null, HttpStatus.NO_CONTENT);
-    }
-
-//    @PatchMapping(value = "/screenings/{id}")
-//    public ResponseEntity<Screening> addCustomerToScreening(@PathVariable long screeningId, @RequestParam long customerId) {
-//        Screening updatedScreening = screeningService.addCustomerToScreening(customerId, screeningId);
-//        return new ResponseEntity<>(updatedScreening, HttpStatus.OK);
-////        screening = ScreeningService.addCustomerToScreening(screening);
-////        return new ResponseEntity<>(movie, HttpStatus.CREATED);
-//    }
-
-//    @PatchMapping(value = "/screenings/{id}")
-//    public ResponseEntity<Screening> addMultiParamsToScreening(
-//            @PathVariable long screeningId,
-//            @RequestParam Optional<Long> customerId,
-//            @RequestParam Optional<Long> screenId,
-//            @RequestParam Optional<Long> movieId
-//    ) {
-//        Optional<Screening> screening = screeningService.getScreeningById(screeningId);
-//        if(screening.isPresent()){
-//            Screening updatedScreening;
-//            if(customerId.isPresent()){
-//                updatedScreening = screeningService.addCustomerToScreening(customerId.get(), screeningId);
-//                return new ResponseEntity<>(updatedScreening, HttpStatus.OK);
-//            }else if(screenId.isPresent() && movieId.isPresent()){
-//                updatedScreening = screeningService.addMovieToScreening(movieId.get(),screeningId, screenId.get());
-//                return new ResponseEntity<>(updatedScreening, HttpStatus.OK);
-//            }
-//        }
-//        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-//    }
-
-    @PatchMapping
-    public ResponseEntity<Screen> addScreen(@RequestBody Screen newScreen) {
-        Screen screen = screenService.addNewScreen(newScreen);
-        return new ResponseEntity<>(screen, HttpStatus.OK);
-    }
-
-    @PostMapping(value = "/{id}/movies")
-    public ResponseEntity<Cinema> addMovieToCinema(@RequestBody Movie movie, @PathVariable long id){
-        Cinema newMovie = cinemaService.addNewMovieToCinema(movie, id);
-        return new ResponseEntity<>(newMovie, HttpStatus.OK);
-    }
-
-    @PostMapping("/{id}/screens")
-    public ResponseEntity<Screen> addScreenToCinema(@RequestBody Screen screen, @PathVariable long id){
-        Screen newScreen = cinemaService.addScreenToCinema(screen, id);
-        return new ResponseEntity<>(newScreen, HttpStatus.OK);
-    }
-
-    @PostMapping
-    public ResponseEntity<Cinema> createCinema(@RequestBody Cinema cinema) {
-        Cinema savedCinema = cinemaService.addNewCinema(cinema);
-        return new ResponseEntity<>(savedCinema, HttpStatus.CREATED);
-    }
 
     @GetMapping
     public ResponseEntity<List<Cinema>> getAllCinemas() {
@@ -123,8 +39,69 @@ public class CinemaController {
         }
     }
 
+    @GetMapping("/{id}/movies")
+    public ResponseEntity<List<Movie>> getAllMovies(@PathVariable long id) {
+        List<Movie> movies = cinemaService.getAllMovies(id);
+        return new ResponseEntity<>(movies, HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}/movies/{movieId}")
+    public ResponseEntity<Movie> getMovieById(@PathVariable long id, @PathVariable long movieId){
+        Movie movie = cinemaService.getMovieById(movieId, id);
+        if(movie != null){
+            return new ResponseEntity<>(movie, HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Long> cancelMovie(@PathVariable long id) {
+        cinemaService.cancelMovie(id);
+        return new ResponseEntity(null, HttpStatus.NO_CONTENT);
+    }
+
+//    todo: cinema object in movie, how to create a movie object within a cinema object?
+    @PostMapping(value = "/{id}/movies")
+    public ResponseEntity<Cinema> addMovieToCinema(
+            @RequestBody Movie movie,
+//            @RequestParam String title,
+//            @RequestParam int length,
+//            @RequestParam int releaseDate,
+//            @RequestParam String genre,
+            @PathVariable long id
+    ){
+//        Optional<Cinema> cinema = cinemaService.getCinemaById(id);
+//        if(cinema.isPresent()){
+//            Movie movie = new Movie(title, length, releaseDate, genre, cinema.get());
+//            Cinema newScreen = cinemaService.addNewMovieToCinema(movie, id);
+//            return new ResponseEntity<>(newScreen, HttpStatus.OK);
+//        }
+        Cinema newMovie = cinemaService.addNewMovieToCinema(movie, id);
+        return new ResponseEntity<>(newMovie, HttpStatus.OK);
+//        return new ResponseEntity<>(null, HttpStatus.OK);
+    }
+
+    //    todo: cinema object in screen, how to create a screen within a cinema object?
+    @PostMapping(value = "/{id}/screens")
+    public ResponseEntity<Cinema> addScreenToCinema(@RequestParam int capacity, @PathVariable long id){
+        Optional<Cinema> cinema = cinemaService.getCinemaById(id);
+        if(cinema.isPresent()){
+            Screen screen = new Screen(capacity, cinema.get());
+            Cinema newScreen = cinemaService.addScreenToCinema(screen, id);
+            return new ResponseEntity<>(newScreen, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+
+    @PostMapping
+    public ResponseEntity<Cinema> createCinema(@RequestBody Cinema cinema) {
+        Cinema savedCinema = cinemaService.addNewCinema(cinema);
+        return new ResponseEntity<>(savedCinema, HttpStatus.CREATED);
+    }
 
 
+//    todo: remove screen from cinema
 //    @DeleteMapping
 //    public ResponseEntity deleteScreen(long id){
 //        screenService.removeScreen(id);
