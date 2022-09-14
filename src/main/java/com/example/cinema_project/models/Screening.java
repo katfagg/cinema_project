@@ -14,12 +14,12 @@ public class Screening {
     private Long id;
     @ManyToOne
     @JoinColumn(name = "movie_id")
-    @JsonIgnoreProperties({"screenings"})
+    @JsonIgnoreProperties({"screenings","cinema"})
     private Movie movie;
     
     @ManyToOne
     @JoinColumn(name = "screen_id")
-    @JsonIgnoreProperties({"screenings"})
+    @JsonIgnoreProperties({"screenings","cinema"})
     private Screen screen;
 
     @ManyToMany
