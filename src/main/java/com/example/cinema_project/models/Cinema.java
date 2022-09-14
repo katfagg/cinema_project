@@ -15,10 +15,10 @@ public class Cinema {
         @Column
         private String branch;
         @OneToMany(mappedBy = "cinema")
-        @JsonIgnoreProperties({"cinema"})
+        @JsonIgnoreProperties({"cinema","screenings"})
         private List<Movie> movies;
         @OneToMany(mappedBy = "cinema")
-        @JsonIgnoreProperties({"cinema"})
+        @JsonIgnoreProperties({"cinema","screenings"})
         private List<Screen> screens;
 
     public Cinema(String branch) {
