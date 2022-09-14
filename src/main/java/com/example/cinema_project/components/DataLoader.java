@@ -58,6 +58,7 @@ public class DataLoader implements ApplicationRunner{
         customerRepository.save(customer10);
 
         Cinema cinema = new Cinema("Not Cineworld");
+        cinemaRepository.save(cinema);
 
         Movie movie = new Movie("Titanic", 194, 1997, "Historical Drama", cinema);
         Movie movie1 = new Movie("300", 117, 2006, "Action", cinema);
@@ -72,7 +73,6 @@ public class DataLoader implements ApplicationRunner{
         Movie movie10 = new Movie("Inception", 140, 2010, "Sci-fi", cinema);
         Movie movie11 = new Movie("The Ugly Truth", 96, 2009, "Comedy", cinema);
         Movie movie12 = new Movie("Hacksaw Ridge", 139, 2016, "Historical Drama", cinema);
-        cinemaRepository.save(cinema);
 
         movieRepository.save(movie);
         movieRepository.save(movie1);

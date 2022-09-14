@@ -21,12 +21,12 @@ public class Screen {
     
     @ManyToOne
     @JoinColumn(name = "cinema_id")
-    @JsonIgnoreProperties({"screens"})
+    @JsonIgnoreProperties({"screens","movies"})
     private  Cinema cinema;
     
 
     @OneToMany(mappedBy = "screen")
-    @JsonIgnoreProperties({"screen"})
+    @JsonIgnoreProperties({"screen","movies"})
     List<Screening> screenings;
 
     public Screen(int capacity, Cinema cinema) {
