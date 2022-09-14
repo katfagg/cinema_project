@@ -2,6 +2,7 @@ package com.example.cinema_project.controllers;
 
 import com.example.cinema_project.models.Screen;
 import com.example.cinema_project.models.Screening;
+import com.example.cinema_project.repositories.CustomerRepository;
 import com.example.cinema_project.services.ScreenService;
 import com.example.cinema_project.services.ScreeningService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ public class ScreenController {
 
     @Autowired
     ScreeningService screeningService;
+
+    @Autowired
+    CustomerRepository customerRepository;
 
     @GetMapping
     public ResponseEntity<List<Screen>> getAllScreens(){
@@ -54,13 +58,18 @@ public class ScreenController {
         }
     }
 
-//    @PostMapping
-//    public ResponseEntity<Screen> addNewScreen(@RequestBody Screen screen){
-//        Screen savedScreen = screenService.addNewScreen(screen);
-//        return new ResponseEntity<>(savedScreen, HttpStatus.CREATED);
-//    }
+    @PostMapping
+    public ResponseEntity<Screen> addNewScreen(@RequestBody Screen screen){
+        Screen savedScreen = screenService.addNewScreen(screen);
+        return new ResponseEntity<>(savedScreen, HttpStatus.CREATED);
+    }
 
-    @PostMapping(value = "/{id}")
+    @PatchMapping(value = "/{id}/screenings/addcustomer/{screeningId}")
+    public ResponseEntity<Screening> addCustomerToScreening(@PathVariable long screeningId, @RequestParam long customerId){
+        Screening screening = screeningService.addCustomerToScreening(customerId, screeningId);
+        return new ResponseEntity<>(screening, HttpStatus.OK);
+    }
+    @PatchMapping(value = "/{id}")
     public ResponseEntity<Screen> addScreeningToScreen(@PathVariable long screenId, @RequestParam long screeningId){
         Screen screen = screenService.addScreeningToScreen(screenId, screeningId);
         return new ResponseEntity<>(screen, HttpStatus.OK);
