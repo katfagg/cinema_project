@@ -7,7 +7,7 @@ We are the team behind Cinema - 4 members of Cohort 6 from the Bright Network Te
 
 - Yongran
 	- [Github](https://github.com/YoyoMai98)
-	- [LinkedIn]([https://www.linkedin.com/in/yongran-mai/)
+	- [LinkedIn](https://www.linkedin.com/in/yongran-mai/)
 
 - Tariq
 	- [Github](https://github.com/Tariq-Hennache)
