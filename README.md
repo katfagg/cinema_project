@@ -32,9 +32,9 @@ We are the team behind Cinema - 4 members of Cohort 6 from the Bright Network Te
 
 ## Project Overview
 Given the broad scope to create an API;
-- We have designed a cinema API which allows you to select information from our different classes and get this brought up in Postman and Postico.
-- We have used mainly Java as our primary Backend language, but have also used some SQL for the data and some Postman for helping us with running our app.
-- We faced many challenges throughout making our app, these included: merge errors and issues with git/github, dependency loops failing, testing our code with it giving errors, having foreign key constraint issues.
+- We have designed a cinema API which uses POJOs and allows you to select information from our different classes and get this brought up in Postman and Postico.
+- We have used Java as our primary Backend language, but have also used SQL for the data.
+- Our main challenges included removing dependency loops between screening, screen and cinema classes, fixing foreign key constraints, and version control errors. 
 - To mitigate our issues we regularly discussed them with one another, and would ask for help when we needed it. Our teamwork was key for getting us to complete this project together.
 
 ## Project Structure
