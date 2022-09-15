@@ -6,19 +6,19 @@ A seamless backend experience between customers, screens and movies for the sect
 We are the team behind Cinema - 4 members of Cohort 6 from the Bright Network Technology Academy!
 
 - Yongran
-- Github: [https://github.com/YoyoMai98]
-- LinkedIn: [https://www.linkedin.com/in/yongran-mai/]
+	- Github: [https://github.com/YoyoMai98]
+	- LinkedIn: [https://www.linkedin.com/in/yongran-mai/]
 
 - Tariq
-- Github:  [https://github.com/Tariq-Hennache]
-- LinkedIn: [https://www.linkedin.com/in/tariq-hennache/]
+	- Github:  [https://github.com/Tariq-Hennache]
+	- LinkedIn: [https://www.linkedin.com/in/tariq-hennache/]
 - Guy
 	- Github: [https://github.com/GuyTheCoder]
 	- LinkedIn: [https://www.linkedin.com/in/guy-chalk/]
 - Kat
-- Github: [https://github.com/katfagg]
-- LinkedIn: [https://www.linkedin.com/in/katfagg/]
-- Email: katjfagg@gmail.com
+	- Github: [https://github.com/katfagg]
+	- LinkedIn: [https://www.linkedin.com/in/katfagg/]
+	- Email: katjfagg@gmail.com
 
 
 ## Table of Contents
@@ -48,11 +48,10 @@ Given the broad scope to create an API;
 
 ## Install and Run
 
-/*:
 1. This Spring Boot API runs on Java 17. Ensure you have an IDE, API platform and PostgreSQL client before running this API. We used IntelliJ, Postman & Postico, respectively. 
 2. Clone the repository (`git clone`) [git@github.com:katfagg/cinema_project.git]. Open project in IDE.
 3. Create a database called “cinema” (`createdb cinema`); this will allow you to use your PostgreSQL client to view your tables.
-4. Run the application and open your API platform. Interact with the API and make HTTP queries via “localhost:8080/{query}” in the CLI. */
+4. Run the application and open your API platform. Interact with the API and make HTTP queries via “localhost:8080/{query}” in the CLI.
 
 
 ## Using the API - HTTP Requests
