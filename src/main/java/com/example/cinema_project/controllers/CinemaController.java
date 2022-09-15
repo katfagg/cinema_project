@@ -40,8 +40,18 @@ public class CinemaController {
     }
 
     @GetMapping("/{id}/movies")
-    public ResponseEntity<List<Movie>> getAllMovies(@PathVariable long id) {
-        List<Movie> movies = cinemaService.getAllMovies(id);
+    public ResponseEntity<List<Movie>> getAllMovies(
+            @PathVariable long id,
+            @RequestParam Optional<String> genre,
+            @RequestParam Optional<String> title) {
+        List<Movie> movies;
+        if(genre.isPresent()){
+            movies = cinemaService.getMovieByGenre(genre.get());
+        }else if(title.isPresent()){
+            movies = cinemaService.getMovieByTitle(title.get());
+        }else{
+            movies = cinemaService.getAllMovies(id);
+        }
         return new ResponseEntity<>(movies, HttpStatus.OK);
     }
 
@@ -78,13 +88,5 @@ public class CinemaController {
         Cinema savedCinema = cinemaService.addNewCinema(cinema);
         return new ResponseEntity<>(savedCinema, HttpStatus.CREATED);
     }
-
-
-//    todo: remove screen from cinema
-//    @DeleteMapping
-//    public ResponseEntity deleteScreen(long id){
-//        screenService.removeScreen(id);
-//        return new ResponseEntity<>(null. HttpStatus.NO_CONTENT);
-//    }
 
 }

@@ -63,7 +63,15 @@ public class CinemaService {
             }
         }
         return null;
-    } 
+    }
+
+    public List<Movie> getMovieByGenre(String genre){
+        return movieRepository.findByGenre(genre);
+    }
+
+    public List<Movie> getMovieByTitle(String title){
+        return movieRepository.findByTitle(title);
+    }
 
     public List<Cinema> getAllCinemas(){
         return cinemaRepository.findAll();

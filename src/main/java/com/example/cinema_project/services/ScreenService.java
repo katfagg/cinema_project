@@ -65,11 +65,6 @@ public class ScreenService {
         return screen;
     }
 
-//    todo: remove screen from cinema: similar logic to addMovieToCinema? probably need to be in cinemaService?
-    public void removeScreen(long id){
-        screenRepository.deleteById(id);
-    }
-
     }
 
 
