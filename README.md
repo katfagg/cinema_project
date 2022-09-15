@@ -1,9 +1,9 @@
 # Cinema API
 
-A seamless backend experience between customers, screens and movies for the sector-leading BrightCinema chain of cinemas.
+A seamless backend experience among customers, screens and movies for the sector-leading BrightCinema chain of cinemas.
 
 ## Who we are
-We are the team behind Cinema - 4 members of Cohort 6 from the Bright Network Technology Academy!
+We are the Debug Demons team behind Cinema - 4 members of Cohort 6 from the Bright Network Technology Academy!
 
 - Yongran
 	- [Github](https://github.com/YoyoMai98)
@@ -92,4 +92,4 @@ Here are a few ideas on how we would like to expand on this API:
 
 
 ## Acknowledgements
-We would like to thank the [BNTA](https://techacademy.brightnetwork.co.uk/) team and our trainers!
+We would like to thank the [BNTA](https://techacademy.brightnetwork.co.uk/) team and especially to our trainers Anna, Colin, Eoan, Richard and Zsolt!
