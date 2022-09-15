@@ -6,19 +6,19 @@ A seamless backend experience between customers, screens and movies for the sect
 We are the team behind Cinema - 4 members of Cohort 6 from the Bright Network Technology Academy!
 
 - Yongran
-	- (Github)[https://github.com/YoyoMai98]
-	- (LinkedIn)[https://www.linkedin.com/in/yongran-mai/]
+	- [Github](https://github.com/YoyoMai98)
+	- [LinkedIn]([https://www.linkedin.com/in/yongran-mai/)
 
 - Tariq
-	- (Github)[https://github.com/Tariq-Hennache]
-	- (LinkedIn)[https://www.linkedin.com/in/tariq-hennache/]
+	- [Github](https://github.com/Tariq-Hennache)
+	- [LinkedIn](https://www.linkedin.com/in/tariq-hennache/)
 - Guy
-	- (Github)[https://github.com/GuyTheCoder]
-	- (LinkedIn)[https://www.linkedin.com/in/guy-chalk/]
+	- [Github](https://github.com/GuyTheCoder)
+	- [LinkedIn](https://www.linkedin.com/in/guy-chalk/)
 - Kat
-	- (Github)[https://github.com/katfagg]
-	- (LinkedIn)[https://www.linkedin.com/in/katfagg/]
-	- (Email)katjfagg@gmail.com
+	- [Github](https://github.com/katfagg)
+	- [LinkedIn](https://www.linkedin.com/in/katfagg/)
+	- [Email](katjfagg@gmail.com)
 
 
 ## Table of Contents
