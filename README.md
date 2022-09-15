@@ -1,3 +1,4 @@
+<img width="778" alt="Class Diagram Final" src="https://user-images.githubusercontent.com/108692801/190386315-26f3d3ee-1e91-4aab-8efe-095ef10d8654.png">
 # READ ME | Cinema API
 
 
