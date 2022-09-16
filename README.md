@@ -52,7 +52,7 @@ Given the broad scope to create an API;
 
 1. This Spring Boot API runs on Java 17. Ensure you have an IDE, API platform and PostgreSQL client before running this API. We used IntelliJ, Postman & Postico, respectively. 
 2. Clone the repository `git clone git@github.com:katfagg/cinema_project.git`. Open project in IDE.
-3. Create a database called “cinema” (`createdb cinema`); this will allow you to use your PostgreSQL client to view your tables.
+3. Create a database called “cinema” (`createdb cinema_app`); this will allow you to use your PostgreSQL client to view your tables.
 4. Run the application and open your API platform. Interact with the API and make HTTP queries via `localhost:8080/{query}` in the CLI.
 
 
@@ -64,8 +64,8 @@ Given the broad scope to create an API;
 |:-------------------------------------------------------------------------|:-------------|:-------------------------------------------------|
 | `.../cinemas` |`GET` | Get All Cinemas |
 |`.../cinemas/{id}`| `GET` | Get Cinema By ID |
-|`.../cinemas/movies` |`GET` | Get All Movies  |
-|`.../cinemas/movies/{id}`|`GET`| Get Movie By ID|
+|`.../cinemas/{id}/ movies` |`GET` | Get All Movies  |
+|`.../cinemas/{id}/movies/{id}`|`GET`| Get Movie By ID|
 | `.../cinemas/{id}/movies/{movieId}`  | `DELETE`  | Cancel Movie  |
 | `.../cinemas/{id}/movies`  | `POST`  | Add Movie To Cinema  |
 | `.../cinemas/{id}/screens`  | `POST`  | Add Screen To Cinema |
