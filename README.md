@@ -64,8 +64,8 @@ Given the broad scope to create an API;
 |:-------------------------------------------------------------------------|:-------------|:-------------------------------------------------|
 | `.../cinemas` |`GET` | Get All Cinemas |
 |`.../cinemas/{id}`| `GET` | Get Cinema By ID |
-|`.../cinemas/{id}/ movies` |`GET` | Get All Movies  |
-|`.../cinemas/{id}/movies/{id}`|`GET`| Get Movie By ID|
+|`.../cinemas/{id}/movies` |`GET` | Get All Movies  |
+|`.../cinemas/{id}/movies/{movieId}`|`GET`| Get Movie By ID|
 | `.../cinemas/{id}/movies/{movieId}`  | `DELETE`  | Cancel Movie  |
 | `.../cinemas/{id}/movies`  | `POST`  | Add Movie To Cinema  |
 | `.../cinemas/{id}/screens`  | `POST`  | Add Screen To Cinema |
