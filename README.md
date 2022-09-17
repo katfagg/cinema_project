@@ -68,7 +68,7 @@ Given the broad scope to our cinema-management-API:
 |`.../cinemas/{id}/movies` |`GET` | Get All Movies  |
 |`.../cinemas/{id}/movies/{movieId}`|`GET`| Get Movie By ID|
 |`.../cinemas/{id}/movies?genre={genre}`|`GET`| Get Movie By Genre |
-|`.../cinemas/{id}/movies/title={title}`|`GET`| Get Movie By Title|
+|`.../cinemas/{id}/movies?title={title}`|`GET`| Get Movie By Title|
 | `.../cinemas/{id}/movies/{movieId}`  | `DELETE`  | Cancel Movie  |
 | `.../cinemas/{id}/movies`  | `POST`  | Add Movie To Cinema  |
 | `.../cinemas/{id}/screens`  | `POST`  | Add Screen To Cinema |
@@ -82,7 +82,7 @@ Given the broad scope to our cinema-management-API:
 | `.../screens/{id}/screenings` | `GET` | Get Screening By ID |
 | `.../screens` | `POST` | Create New Screen |
 | `.../screens/{screenId}?screeningId={screeningId}` | `POST` | Create/Add New Screening To Screen |
-| `.../screens/{screenId}/screenings/{screeningId}?cinemaId={cinemaId}&customerId={customerId}` | `POST` | Add New Customer To Screening |
+| `.../screens/{screenId}/screenings/{screeningId}?customerId={customerId}` | `POST` | Add New Customer To Screening |
 | `.../screens/{screenId}/screenings/{screeningId}?cinemaId={cinemaId}&movieId={movieId}` | `POST` | Add New Movie To Screening |
 | `.../screens/{screenId}?cinemaId={cinemaId}&screeningId={screeningId}` | `DELETE` | Delete Screening By ID |
 | `.../screens/{screenId}?cinemaId={cinemaId}&screeningId={screeningId}?movieId={movieId}` | `DELETE` | Delete Movie By ID |
