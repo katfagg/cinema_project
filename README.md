@@ -64,23 +64,23 @@ Given the broad scope to our cinema-management-API:
 | HTTP Request Path                                                        | Request Type | Description                                      |
 |:-------------------------------------------------------------------------|:-------------|:-------------------------------------------------|
 | `.../cinemas` |`GET` | Get All Cinemas |
+| `.../cinemas`  | `POST`  | Create Cinema  |
 |`.../cinemas/{id}`| `GET` | Get Cinema By ID |
 |`.../cinemas/{id}/movies` |`GET` | Get All Movies  |
+| `.../cinemas/{id}/movies`  | `POST`  | Add Movie To Cinema  |
 |`.../cinemas/{id}/movies/{movieId}`|`GET`| Get Movie By ID|
+| `.../cinemas/{id}/movies/{movieId}`  | `DELETE`  | Cancel Movie  |
 |`.../cinemas/{id}/movies?genre={genre}`|`GET`| Get Movie By Genre |
 |`.../cinemas/{id}/movies?title={title}`|`GET`| Get Movie By Title|
-| `.../cinemas/{id}/movies/{movieId}`  | `DELETE`  | Cancel Movie  |
-| `.../cinemas/{id}/movies`  | `POST`  | Add Movie To Cinema  |
 | `.../cinemas/{id}/screens`  | `POST`  | Add Screen To Cinema |
-| `.../cinemas`  | `POST`  | Create Cinema  |
 | `.../customers` | `GET` | Get All Customers |
-|`.../customers/{id}` | `GET` | Get Customer By ID |
 | `.../customers` | `POST` | Create New Customers |
+|`.../customers/{id}` | `GET` | Get Customer By ID |
 | `.../screens` | `GET` | Get All Screens 
-| `.../screens/{id}` | `GET` | Get Screen By ID |
-| `.../screens/screenings` | `GET` | Get All Screenings |
-| `.../screens/{id}/screenings` | `GET` | Get Screening By ID |
 | `.../screens` | `POST` | Create New Screen |
+| `.../screens/{id}` | `GET` | Get Screen By ID |
+| `.../screens/{id}/screenings` | `GET` | Get Screening By ID |
+| `.../screens/screenings` | `GET` | Get All Screenings |
 | `.../screens/{screenId}?screeningId={screeningId}` | `POST` | Create/Add New Screening To Screen |
 | `.../screens/{screenId}/screenings/{screeningId}?customerId={customerId}` | `POST` | Add New Customer To Screening |
 | `.../screens/{screenId}/screenings/{screeningId}?cinemaId={cinemaId}&movieId={movieId}` | `POST` | Add New Movie To Screening |
